@@ -1,0 +1,31 @@
+# BEGIN
+RewriteEngine On
+# 首页、分类浏览、数据归档、最近更新、排行榜、意见反馈
+RewriteRule ^(index|webdir|weblink|article|category|update|archives|top|feedback|link|rssfeed|sitemap)(\/|.html)?$ index.php\?mod=$1
+# 最近更新
+RewriteRule ^update\/(\d+)$ index.php\?mod=update&days=$1
+RewriteRule ^update\/(\d+)/(\d+)$ index.php\?mod=update&days=$1&page=$2
+# 数据归档
+RewriteRule ^archives\/(\d+)$ index.php\?mod=archives&date=$1
+RewriteRule ^archives\/(\d+)/(\d+)$ index.php\?mod=archives&date=$1&page=$2
+# 站内搜索
+RewriteRule ^search\/(name|url|tags|intro)\/(.+)/(\d+)$ index.php\?mod=search&type=$1&query=$2&page=$3
+RewriteRule ^search\/(name|url|tags|intro)\/(.+)$ index.php\?mod=search&type=$1&query=$2
+# 站点详细
+RewriteRule ^review[\/-]([\w\d\.]+)$ index.php\?mod=siteinfo&domain=$1
+# 文章详细
+RewriteRule ^artinfo\/(\d+)$ index.php\?mod=artinfo&aid=$1
+# 链接详细
+RewriteRule ^linkinfo\/(\d+)$ index.php\?mod=linkinfo&lid=$1
+# 单页
+RewriteRule ^diypage\/(\d+)$ index.php\?mod=diypage&pid=$1
+# RSS
+RewriteRule ^rssfeed\/(\d+)$ index.php\?mod=rssfeed&cid=$1
+# SiteMap
+RewriteRule ^sitemap\/(\d+)$ index.php\?mod=sitemap&cid=$1
+# 分类目录
+RewriteRule ^webdir\/(.+)\/(\d+)$ index.php\?mod=webdir&cid=$1
+RewriteRule ^webdir\/(.+)\/(\d+)/(\d+)$ index.php\?mod=webdir&cid=$2&page=$3
+RewriteRule ^article\/(.+)\/(\d+)$ index.php\?mod=article&cid=$2
+RewriteRule ^article\/(.+)\/(\d+)/(\d+)$ index.php\?mod=article&cid=$2&page=$3
+# END
