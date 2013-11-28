@@ -25,10 +25,11 @@
 						<li><strong>网站地址：</strong><a href="{#$web.web_furl#}" target="_blank" class="visit" onClick="clickout({#$web.web_id#})"><font color="#008000">{#$web.web_url#}</font></a></li>
             			<li><strong>服务器IP：</strong>{#$web.web_ip#}</li>
                         <li><strong>网站描述：</strong><span style="line-height: 23px;">{#$web.web_intro#}</span></li>
+                        {#if $user.user_qq#}
                         <li><strong>联系站长：</strong><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={#$user.user_qq#}&amp;site={#$user.nick_name#}&amp;menu=yes" target="_blank"><img border="0" alt="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:{#$user.user_qq#}:41"></a></li>
+                        {#/if#}
                         <li><strong>TAG标签：</strong>{#foreach from=$web_tags item=item#}<a href="{#$item.tag_link#}">{#$item.tag_name#}</a>　{#/foreach#}</li>
                         <li>{#get_adcode(1)#}</li>
-                        <li><strong>相关查询：</strong><a href="http://tool.adminchn.com/site/{#$web.web_url#}" target="_blank">网站综合信息查询</a>　|　<a href="http://tool.adminchn.com/seo/{#$web.web_url#}" target="_blank">百度近日收录查询</a>　|　<a href="http://tool.adminchn.com/link/{#$web.web_url#}" target="_blank">友情链接查询</a>　|　<a href="http://tool.adminchn.com/pr/{#$web.web_url#}" target="_blank">PR查询</a></li>
 					</ul>
 				</div>
             </div>

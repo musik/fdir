@@ -81,7 +81,7 @@ a:hover {color: #f30; text-decoration: underline;}
 #coolbox h3 {background: #f8fdff; border-bottom: dashed 1px #dae7ed; color: #07c; font-size: 14px; padding: 6px;}
 .csitelist {padding: 5px 8px;}
 .csitelist li {display: block; font-size: 14px; height: 30px; overflow: hidden; vertical-align: top; width: 100%;}
-.csitelist li h4 {display: block; float: left; font-weight: normal; height: 30px; line-height: 30px; width: 50px;}
+.csitelist li h4 {display: block; float: left; font-weight: normal; height: 30px; line-height: 30px; width: 84px;}
 .csitelist li h4 a {color: #07c;}
 .csitelist li span {display: block; float: left; height: 30px; line-height: 30px; margin-right: 20px; overflow: hidden; white-space: nowrap; width: 96px;}
 .csitelist li span a {font-size: 13px;}

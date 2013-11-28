@@ -14,7 +14,7 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	$web = get_one_website($where);
 	if (!$web) {
 		unset($web);
-		redirect('./?mod=index');
+		redirect('/member/?mod=website&act=add&web_url=' . $web_url);
 	}
 	
   $pagename = $web['web_name'];

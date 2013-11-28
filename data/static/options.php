@@ -1,13 +1,13 @@
 <?php
 //File name: options.php
-//Creation time: 2013-11-29 00:59:50
+//Creation time: 2013-11-29 01:38:50
 
 if (!defined('IN_HANFOX')) exit('Access Denied');
 
 $static_data = array(
 	'site_name' => '医药网站大全',
 	'site_title' => '医药网站大全_网站目录_网站提交/登录入口',
-	'site_url' => 'http://dfir.jxjw.net/',
+	'site_url' => 'http://fdir.jxjw.net/',
 	'site_root' => '/',
 	'admin_email' => 'hanfox@qq.com',
 	'site_keywords' => '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录',
@@ -38,7 +38,7 @@ $static_data = array(
 	'smtp_pass' => 'test',
 	'site_name' => '医药网站大全',
 	'site_title' => '医药网站大全_网站目录_网站提交/登录入口',
-	'site_url' => 'http://dfir.jxjw.net/',
+	'site_url' => 'http://fdir.jxjw.net/',
 	'site_root' => '/',
 	'admin_email' => 'hanfox@qq.com',
 	'site_keywords' => '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录',
@@ -69,7 +69,7 @@ $static_data = array(
 	'smtp_pass' => 'test',
 	'site_name' => '医药网站大全',
 	'site_title' => '医药网站大全_网站目录_网站提交/登录入口',
-	'site_url' => 'http://dfir.jxjw.net/',
+	'site_url' => 'http://fdir.jxjw.net/',
 	'site_root' => '/',
 	'admin_email' => 'hanfox@qq.com',
 	'site_keywords' => '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录',
@@ -100,7 +100,7 @@ $static_data = array(
 	'smtp_pass' => 'test',
 	'site_name' => '医药网站大全',
 	'site_title' => '医药网站大全_网站目录_网站提交/登录入口',
-	'site_url' => 'http://dfir.jxjw.net/',
+	'site_url' => 'http://fdir.jxjw.net/',
 	'site_root' => '/',
 	'admin_email' => 'hanfox@qq.com',
 	'site_keywords' => '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录',
@@ -131,7 +131,7 @@ $static_data = array(
 	'smtp_pass' => 'test',
 	'site_name' => '医药网站大全',
 	'site_title' => '医药网站大全_网站目录_网站提交/登录入口',
-	'site_url' => 'http://dfir.jxjw.net/',
+	'site_url' => 'http://fdir.jxjw.net/',
 	'site_root' => '/',
 	'admin_email' => 'hanfox@qq.com',
 	'site_keywords' => '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录',

@@ -63,7 +63,7 @@ function get_pagerank($url) {
 	require(APP_PATH.'include/pagerank.php');
 	
 	$pr = new PageRank();
-	$rank = $pr->getGPR($url);
+	$rank = $pr->getAPR($url);
 	return $rank;
 }
 

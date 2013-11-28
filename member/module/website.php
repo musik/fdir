@@ -42,6 +42,8 @@ if (!$smarty->isCached($tplfile)) {
 	/** add */
 	if ($action == 'add') {
 		$pagename = '网站提交';
+    $web_url = isset($_GET['web_url']) ? $_GET['web_url'] : '';
+		$smarty->assign('web_url', $web_url);
 		
 		$smarty->assign('pagename', $pagename);
 		$smarty->assign('site_title', $pagename.' - '.$options['site_name']);
@@ -67,6 +69,7 @@ if (!$smarty->isCached($tplfile)) {
 		$smarty->assign('site_path', get_sitepath().' &raquo; '.$pagename);	
 		$smarty->assign('category_option', get_category_option('webdir', 0, $web['cate_id'], 0));
 		$smarty->assign('web', $web);	
+		$smarty->assign('web_url', $web['web_url']);	
 		$smarty->assign('do', 'saveedit');
 	}
 	

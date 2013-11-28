@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.10, created on 2013-11-29 00:51:04
+<?php /* Smarty version Smarty-3.1.10, created on 2013-11-29 01:36:27
          compiled from "/home/muzik/www/fdir/themes/member/website.html" */ ?>
 <?php /*%%SmartyHeaderCode:2191574455297747881b198-33317649%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'be237e6e8d8e725c6e20e3110b6230599c50082b' => 
     array (
       0 => '/home/muzik/www/fdir/themes/member/website.html',
-      1 => 1385656849,
+      1 => 1385660184,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.10',
+  'unifunc' => 'content_529774788fb065_21937287',
   'variables' => 
   array (
     'pagename' => 0,
@@ -24,11 +26,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'showpage' => 0,
     'cfg' => 0,
     'category_option' => 0,
+    'web_url' => 0,
     'do' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.10',
-  'unifunc' => 'content_529774788fb065_21937287',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_529774788fb065_21937287')) {function content_529774788fb065_21937287($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
@@ -90,7 +91,7 @@ if (!$_smarty_tpl->tpl_vars['web']->_loop) {
 </select></li>
         					<li><strong>网站名称：</strong><input type="text" name="web_name" id="web_name" class="ipt" size="50" maxlength="50" value="<?php echo $_smarty_tpl->tpl_vars['web']->value['web_name'];?>
 " /></li>
-            				<li><strong>网站域名：</strong><input type="text" name="web_url" id="web_url" class="ipt" size="50" maxlength="100" value="<?php echo $_smarty_tpl->tpl_vars['web']->value['web_url'];?>
+            				<li><strong>网站域名：</strong><input type="text" name="web_url" id="web_url" class="ipt" size="50" maxlength="100" value="<?php echo $_smarty_tpl->tpl_vars['web_url']->value;?>
 " onblur="checkurl(this.value)" /><input type="button" class="btn" id="meta_btn" value="抓取Meta" onclick="getmeta()"></li>
             				<li><strong>TAG标签：</strong><input type="text" name="web_tags" id="web_tags" class="ipt" size="50" maxlength="50" value="<?php echo $_smarty_tpl->tpl_vars['web']->value['web_tags'];?>
 " onBlur="javascript:this.value=this.value.replace(/，/ig,',');" /></li>
@@ -121,4 +122,5 @@ if (!$_smarty_tpl->tpl_vars['web']->_loop) {
             </div>
             
 <?php echo $_smarty_tpl->getSubTemplate ("footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
 <?php }} ?>

@@ -9,6 +9,15 @@ class PageRank {
 		}
 		return 0;
 	}
+  function getAPR($url) {
+    $url = "http://www.aizhan.com/ajaxAction/pr.php?domain=$url";
+		$data = get_url_content($url);
+		if (!empty($data)) {
+			preg_match('/pr\/pr([0-9]+)\.gif/si', $data, $matches);
+			return ($matches[1]) ? $matches[1] : 0;
+		}
+    return 0;
+  }
 	
 	function strToNum($Str, $Check, $Magic) {
 		$Int32Unit = 4294967296;
