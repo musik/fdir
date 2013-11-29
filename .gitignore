@@ -5,4 +5,5 @@ httpd.parse.errors
 /data/compile/*
 /data/log/*
 /data/dbbak/*
+/data/static/*
 
