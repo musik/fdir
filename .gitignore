@@ -3,3 +3,6 @@ install.lock
 httpd.ini
 httpd.parse.errors
 /data/compile/*
+/data/log/*
+/data/dbbak/*
+
