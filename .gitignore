@@ -6,4 +6,5 @@ httpd.parse.errors
 /data/log/*
 /data/dbbak/*
 /data/static/*
+README
 
