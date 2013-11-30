@@ -26,17 +26,23 @@ function get_category_url($cate_mod = 'webdir', $cate_id = 0, $page = 1) {
 	
 	$cate = get_one_category($cate_id);
 	$cate_dir = !empty($cate['cate_dir']) ? $cate['cate_dir'] : 'category';
+  //if ($cate_mod == "webdir") $cate_mod = "category";
 	$page = isset($page) && $page > 0 ? $page : 1;
+
+  //hack
+  $options['cat_link_struct'] = 1;
 	
-	if ($options['link_struct'] == 1) {
-		$strurl = $options['site_root'].$cate_mod.'-'.$cate_dir.'-'.$cate_id.'-'.$page.'.html';
-	} elseif ($options['link_struct'] == 2) {
-		$strurl = $options['site_root'].$cate_mod.'/'.$cate_dir.'/'.$cate_id.'-'.$page.'.html';
-	} elseif ($options['link_struct'] == 3) {
-		$strurl = $options['site_root'].$cate_mod.'/'.$cate_dir.'/'.$cate_id.'/'.$page;
+	if ($options['cat_link_struct'] == 1) {
+		$strurl = $options['site_root'].$cate_mod.'/'.$cate_dir.'-'.$cate_id;
+	} elseif ($options['cat_link_struct'] == 2) {
+		$strurl = $options['site_root'].$cate_mod.'/'.$cate_dir.'/'.$cate_id;
+	} elseif ($options['cat_link_struct'] == 3) {
+		$strurl = $options['site_root'].$cate_mod.'/'.$cate_dir.'/'.$cate_id;
 	} else {
 		$strurl = '?mod='.$cate_mod.'&cid='.$cate_id;
 	}
+  if ($options['cat_link_struct'] >0  && $page > 1)
+    $strurl .= '-'.$page;
 	unset($cate);
 	
 	return $strurl;
@@ -90,14 +96,16 @@ function get_search_url($type = 'name', $query, $page = 1) {
 	$page = isset($page) && $page > 0 ? $page : 1;
 	
 	if ($options['link_struct'] == 1) {
-		$strurl = $options['site_root'].'search/'.$type.'-'.$query.'-'.$page.'.html';
+		$strurl = $options['site_root'].'search/'.$type.'-'.$query;
 	} elseif ($options['link_struct'] == 2) {
-		$strurl = $options['site_root'].'search/'.$type.'/'.$query.'-'.$page.'.html';
+		$strurl = $options['site_root'].'search/'.$type.'/'.$query;
 	} elseif ($options['link_struct'] == 3) {
-		$strurl = $options['site_root'].'search/'.$type.'/'.$query.'/'.$page;
+		$strurl = $options['site_root'].'search/'.$type.'/'.$query;
 	} else {
 		$strurl = '?mod=search&type='.$type.'&query='.$query;
 	}
+  if ($options['link_struct'] >0  && $page > 1)
+    $strurl .= '-'.$page;
 	
 	return $strurl;
 }
