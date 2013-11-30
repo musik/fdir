@@ -23,7 +23,7 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	$cate = get_one_category($web['cate_id']);
 	$user = get_one_user($web['user_id']);
 	
-	$smarty->assign('site_title', $web['web_name'].' - '.$cate['cate_name'].' - '.$options['site_name']);
+	$smarty->assign('site_title', $web['web_url'] .'/' . $web['web_name'].'&laquo;'.implode(',',array_slice(split(',',$web['web_tags']),0,3)).'&laquo;'.$options['site_name']);
 	$smarty->assign('site_keywords', !empty($web['web_tags']) ? $web['web_tags'] : $options['site_keywords']);
 	$smarty->assign('site_description', !empty($web['web_intro']) ? $web['web_intro'] : $options['site_description']);
 	$smarty->assign('site_path', get_sitepath($cate['cate_mod'], $web['cate_id']).' &raquo; '.$pagename);
