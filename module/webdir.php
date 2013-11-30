@@ -5,7 +5,6 @@ $pagename = '网站目录';
 $pageurl = '?mod=webdir';
 $tempfile = 'webdir.html';
 $table = $DB->table('websites');
-
 $pagesize = 10;
 $curpage = intval($_GET['page']);
 if ($curpage > 1) {
