@@ -21,7 +21,7 @@ a:hover {color: #f30; text-decoration: underline;}
 /* header */
 #header {}
 #topbox {height: 100px;}
-.logo {background: url(logo.png) center; display: block; float: left; height: 100px; width: 200px;}
+.logo {background: url(/themes/default/skin/logo.png) center; display: block; float: left; height: 75px; width: 308px; margin-top: 10px}
 /* sobox */
 #sobox {float: right; padding-top: 20px;}
 .sofrm {display: block; margin: 0px auto; padding-top: 14px; position: relative; width: 500px;}

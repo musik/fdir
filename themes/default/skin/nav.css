@@ -2,13 +2,13 @@
 @import url("reset.css");
 
 /* global */
-body {background: #fff url(bg.png) repeat-x top;}
+body {background: #fff;}
 body, td, th, input, select, textarea {color: #555; font: 12px/1.5 "微软雅黑";}
 a {color: #555; text-decoration: none;}
 a:hover {color: #f30; text-decoration: underline;}
 .blank10 {clear: both; display: block; height: 10px; width: 100%;}
 /* topbg */
-#topbg {height: 32px; line-height: 32px;}
+#topbg {height: 32px; line-height: 32px;border-bottom: 1px solid #eee;background: #f8f8f8;}
 #topbar {margin: 0 auto; width: 950px;}
 #topbar-left {float: left;}
 #topbar-right {color: #ccc; float: right;}
@@ -17,8 +17,10 @@ a:hover {color: #f30; text-decoration: underline;}
 #wrapper {margin: 0 auto; width: 950px;}
 /* topbox */
 #topbox {height: 100px;}
+/* sitepath */
+.sitepath {padding: 10px 0px;}
 /* logo */
-.logo {background: url(logo.png) center; display: block; float: left; height: 100px; width: 200px;}
+.logo {background: url(logo.png) 0 50% no-repeat; display: block; float: left; height: 75px; width: 308px;margin-top: 5px}
 /* sobox */
 #sobox {float: right; padding-top: 20px;}
 .sofrm {display: block; margin: 0px auto; padding-top: 14px; position: relative; width: 500px;}

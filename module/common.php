@@ -15,7 +15,7 @@ function smarty_output($template, $cache_id = NULL, $compile_id = NULL) {
 	$auth_cookie = $_COOKIE['auth_cookie'];
 	$user_info = check_user_login($auth_cookie);
 	if (empty($user_info)) {
-		$login_status = '<a href="'.$options['site_root'].'member/?mod=connect&oper=init"><img src="'.$options['site_root'].'public/images/qq_login.png" /></a> / <a href="'.$options['site_root'].'member/?mod=login">登录</a> / <a href="'.$options['site_root'].'member/?mod=register">注册</a> / <a href="'.$options['site_root'].'member/?mod=getpwd">找回密码</a>';
+		$login_status = '<a href="'.$options['site_root'].'member/?mod=login">登录</a> / <a href="'.$options['site_root'].'member/?mod=register">注册</a> / <a href="'.$options['site_root'].'member/?mod=getpwd">找回密码</a>';
 	} else {
 		$login_status = '<font color="#ff0000">'.$user_info['nick_name'].'</font>，<a href="'.$options['site_root'].'member/?mod=home">我的账户</a> | <a href="'.$options['site_root'].'member/?mod=logout">安全退出</a>';
 	}

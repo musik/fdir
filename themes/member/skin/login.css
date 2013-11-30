@@ -2,7 +2,7 @@
 @import url("reset.css");
 
 /* custom */
-body {background: url(hbg.png) repeat-x top; color: #555;}
+body {background: #fff; color: #555;}
 /* clearfix */
 .clearfix:after {clear: both; content: "."; display: block; height: 0; visibility: hidden;}
 .clearfix {display: inline-table;}
@@ -16,7 +16,7 @@ a {color: #03c; text-decoration: none;}
 a:hover {color: #f30; text-decoration: underline;}
 #wrapper {margin: 0 auto; width: 950px;}
 #header {height: 80px;}
-.logo {background: url(logo.png) no-repeat; color: #ff0; display: block; float: left; font: 40px normal; height: 80px; width: 200px;}
+.logo {background: url(/themes/default/skin/logo.png) center; display: block; float: left; height: 75px; width: 308px; margin-top: 5px}
 #toplink {color: #ccc; float: right; margin: 30px 30px 0 200px;}
 #toplink a {color: #2b7ab8;}
 /* loginform */
