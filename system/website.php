@@ -162,6 +162,7 @@ if ($action == 'edit') {
 	$smarty->assign('istop', $row['web_istop']);
 	$smarty->assign('isbest', $row['web_isbest']);
 	$smarty->assign('status', $row['web_status']);
+  $row['web_ip'] = long2ip($row['web_ip']);
 	$smarty->assign('row', $row);
 	$smarty->assign('h_action', 'saveedit');
 }
