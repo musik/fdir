@@ -21,21 +21,6 @@
     <div class="blank10"></div>
 	<div id="homebox">
 		<div id="homebox-left">
-    		<dl id="hcatebox" class="clearfix">
-        		{#foreach from=get_categories() item=cate#}
-                {#if $cate.cate_mod == 'webdir'#}
-        		<dt><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></dt>
-            	<dd>
-            		<ul class="hcatelist">
-                		{#foreach from=get_categories($cate.cate_id) item=scate#}
-                		<li><a href="{#$scate.cate_link#}">{#$scate.cate_name#}</a></li>
-                    	{#/foreach#}
-                	</ul>
-            	</dd>
-                {#/if#}
-            	{#/foreach#}
-        	</dl>
-            <div class="blank10"></div>
 			<div id="newbox">
             	<h3>最新收录</h3>
                 <ul class="newlist">
