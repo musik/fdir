@@ -407,9 +407,9 @@ if ($action == 'metainfo') {
 	
 	$meta = get_sitemeta($url);	
 	echo '<script type="text/javascript">';
-	echo '$("#web_name").attr("value", "'.$meta['title'].'");';
-	echo '$("#web_tags").attr("value", "'.$meta['keywords'].'");';
-	echo '$("#web_intro").attr("value", "'.$meta['description'].'");';
+	echo '$("#web_name").attr("value", "'.trim($meta['title']).'");';
+	echo '$("#web_tags").attr("value", "'.trim($meta['keywords']).'");';
+	echo '$("#web_intro").attr("value", "'.trim($meta['description']).'");';
 	echo '</script>';
 	unset($meta);
 }

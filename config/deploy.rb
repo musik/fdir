@@ -53,4 +53,9 @@ namespace :app do
     end
     run "ln -s #{shared_path}/config.php #{latest_release}/config.php" 
   end
+  task :rewrite do
+    set :user,'root'
+    upload './config/nginx.dir.conf','/etc/nginx/global/dir.conf'
+    run "service nginx reload"
+  end
 end
