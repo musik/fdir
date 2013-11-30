@@ -11,36 +11,20 @@ function get_sitemeta($url) {
 		if (!empty($matches[1])) {
 			$meta['title'] = $matches[1];
 		}
+    if(preg_match_all('/<meta\s*(.+?)=[\'"](.+?)[\'"]\s*(.+?)=[\'"](.+?)[\'"]\s?\/?>/',$data,$ms,PREG_SET_ORDER)){
+      $needs = array("keywords","description");
+      foreach($ms as $m){
+        $newarr = array(
+          strtolower($m[1])=>$m[2],
+          strtolower($m[3])=>$m[4]
+        );
+        if (!$newarr["name"]) continue;
+        $name = strtolower($newarr["name"]);
+        $meta[$name] = $newarr["content"];
+      }
+    
+    }
 		
-		#Keywords
-		preg_match('/<META\s+name="keywords"\s+content="([\w\W]*?)"/si', $data, $matches);		
-		if (empty($matches[1])) {
-			preg_match("/<META\s+name='keywords'\s+content='([\w\W]*?)'/si", $data, $matches);			
-		}
-		if (empty($matches[1])) {
-			preg_match('/<META\s+content="([\w\W]*?)"\s+name="keywords"/si', $data, $matches);			
-		}
-		if (empty($matches[1])) {
-			preg_match('/<META\s+http-equiv="keywords"\s+content="([\w\W]*?)"/si', $data, $matches);			
-		}
-		if (!empty($matches[1])) {
-			$meta['keywords'] = $matches[1];
-		}
-		
-		#Description
-		preg_match('/<META\s+name="description"\s+content="([\w\W]*?)"/si', $data, $matches);		
-		if (empty($matches[1])) {
-			preg_match("/<META\s+name='description'\s+content='([\w\W]*?)'/si", $data, $matches);			
-		}
-		if (empty($matches[1])) {
-			preg_match('/<META\s+content="([\w\W]*?)"\s+name="description"/si', $data, $matches);					
-		}
-		if (empty($matches[1])) {
-			preg_match('/<META\s+http-equiv="description"\s+content="([\w\W]*?)"/si', $data, $matches);			
-		}
-		if (!empty($matches[1])) {
-			$meta['description'] = $matches[1];
-		}
 	}
 
 	return $meta; 

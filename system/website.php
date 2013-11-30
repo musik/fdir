@@ -404,6 +404,10 @@ if ($action == 'metainfo') {
 	if (empty($url)) {
 		exit('请输入网站域名！');
 	} else {
+    if(substr($url,0,7) == 'http://')
+      $url = substr($url,7,strlen($url) - 7);
+    if(substr($url,-1,1) == '/')
+      $url = substr($url,0,strlen($url) - 1);
 		if (!is_valid_domain($url)) {
 			exit('请输入正确的网站域名！');
 		}
@@ -411,11 +415,13 @@ if ($action == 'metainfo') {
 	
 	$meta = get_sitemeta($url);	
 	echo '<script type="text/javascript">';
+	echo '$("#web_url").attr("value", "'.$url.'");';
 	echo '$("#web_name").attr("value", "'.trim($meta['title']).'");';
-	echo '$("#web_tags").attr("value", "'.trim($meta['keywords']).'");';
+	echo '$("#web_tags").attr("value", "'.str_replace('，','',trim($meta['keywords'])).'");';
 	echo '$("#web_intro").attr("value", "'.trim($meta['description']).'");';
 	echo '</script>';
 	unset($meta);
+  exit();
 }
 
 /** webdata */
