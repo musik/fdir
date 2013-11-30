@@ -44,7 +44,7 @@
         		<h3>酷站导航</h3>
             	<ul class="csitelist">
             		{#foreach from=get_best_categories() item=cate name=csite#}
-                	<li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>{#foreach from=get_websites($cate.cate_id, 5) item=cool#}<span><a href="{#$cool.web_link#}" title="{#$cool.web_name#}">{#$cool.web_name#}</a></span>{#/foreach#}</li>
+                	<li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>{#foreach from=get_websites($cate.cate_id, 5,false,false,'views') item=cool#}<span><a href="{#$cool.web_link#}" title="{#$cool.web_name#}">{#$cool.web_name#}</a></span>{#/foreach#}</li>
                     {#if $smarty.foreach.csite.iteration % 5 == 0 && $smarty.foreach.csite.iteration != 20#}
                     <li class="sline"></li>
                     {#/if#}
