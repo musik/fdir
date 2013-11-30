@@ -138,6 +138,8 @@ if ($action == 'add') {
 	$pagetitle = '添加站点';
 
 	$cate_id = intval($_GET['cate_id']);
+  if(!$cate_id)
+    $cate_id = $_COOKIE['tmp_cat_id'];
 	$category_option = get_category_option('webdir', 0, $cate_id, 0);
 	
 	$smarty->assign('category_option', $category_option);
@@ -236,6 +238,7 @@ if (in_array($action, array('saveadd', 'saveedit'))) {
 	if ($cate_id <= 0) {
 		msgbox('请选择网站所属分类！');
 	} else {
+    setcookie("tmp_cat_id",$cate_id);
 		$row = get_one_category($cate_id);
 		if ($row['cate_mod'] == 'website' && $row['cate_childcount'] > 0) {
 			msgbox('指定的分类下有子分类，请选择子分类进行操作！');
