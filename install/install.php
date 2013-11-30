@@ -73,6 +73,8 @@ foreach ($sql_array as $sql) {
 	}
 }
 
+//清空用户
+mysql_query("delete from {$TABLE_PREFIX}users");
 //添加账号和密码
 mysql_query("INSERT INTO `".$TABLE_PREFIX."users` (`user_type`, `user_email`, `user_pass`, `open_id`, `user_status`, `join_time`) VALUES
 ('admin', '$email', '".md5($pass)."', '', 3, '".time()."');", $db_link);
