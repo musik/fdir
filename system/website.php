@@ -417,7 +417,7 @@ if ($action == 'metainfo') {
 	echo '<script type="text/javascript">';
 	echo '$("#web_url").attr("value", "'.$url.'");';
 	echo '$("#web_name").attr("value", "'.trim($meta['title']).'");';
-	echo '$("#web_tags").attr("value", "'.str_replace('，','',trim($meta['keywords'])).'");';
+	echo '$("#web_tags").attr("value", "'.str_replace('，',',',trim($meta['keywords'])).'");';
 	echo '$("#web_intro").attr("value", "'.trim($meta['description']).'");';
 	echo '</script>';
 	unset($meta);
