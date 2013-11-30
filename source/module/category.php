@@ -101,7 +101,7 @@ function get_all_category() {
 function get_one_category($cate_id = 0) {
 	global $DB;
 	
-	$row = load_cache('category_'.$cate_id) ? load_cache('category_'.$cate_id) : $DB->fetch_one("SELECT cate_id, root_id, cate_mod, cate_name, cate_dir, cate_arrparentid, cate_arrchildid, cate_childcount, cate_postcount FROM ".$DB->table('categories')." WHERE cate_id=$cate_id LIMIT 1");
+	$row = load_cache('category_'.$cate_id) ? load_cache('category_'.$cate_id) : $DB->fetch_one("SELECT cate_id, root_id, cate_mod, cate_name, cate_dir, cate_arrparentid, cate_arrchildid, cate_childcount, cate_postcount,cate_order FROM ".$DB->table('categories')." WHERE cate_id=$cate_id LIMIT 1");
 		
 	return $row;
 }
