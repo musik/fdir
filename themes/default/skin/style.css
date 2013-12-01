@@ -43,6 +43,7 @@ a:hover {color: #f30; text-decoration: none;}
 .navbar li {float: left; font: 14px/35px "微软雅黑"; height: 35px; text-align: center; width: 100px;}
 .navbar li a {display: block; color: #fff;}
 .navbar li a:hover {background: #0080c6; display: block; color: #fff;}
+.navbar li.focus a { color: #9f9;}
 .navbar .navline {background: #0797e5; display: block; height: 35px; width: 1px;}
 .navbar .cur {background: #0067ae;}
 /* txtbox */

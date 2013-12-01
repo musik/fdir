@@ -15,7 +15,7 @@
 <div id="wrapper">
 	<div id="header">
     	<div id="topbox">
-    		<a class="logo" title="{#$site_title#}"></a>
+    <a href="{#$site_url#}" class="logo" title="{#$site_title#}"></a>
             <div id="sobox">
         	<form name="sofrm" class="sofrm" method="get" action="" onSubmit="return rewrite_search()">
             	<input name="mod" type="hidden" id="mod" value="search" />
@@ -35,15 +35,16 @@
         </div>
         <div id="navbox">
 			<ul class="navbar">
-        		<li><a href="{#$site_root#}?mod=index">网站首页</a></li><li class="navline"></li>
-                <li><a href="{#$site_root#}?mod=webdir">网站目录</a></li><li class="navline"></li>
-                <li><a href="{#$site_root#}?mod=article">站长资讯</a></li><li class="navline"></li>
-                <li><a href="{#$site_root#}?mod=weblink">链接交换</a></li><li class="navline"></li>
-                <li><a href="{#$site_root#}?mod=category">分类浏览</a></li><li class="navline"></li>
+        		<li><a href="{#$site_root#}?mod=index">首页</a></li><li class="navline"></li>
+                <!--<li><a href="{#$site_root#}?mod=webdir">网站目录</a></li><li class="navline"></li>-->
+                <!--<li><a href="{#$site_root#}?mod=article">站长资讯</a></li><li class="navline"></li>-->
+                <!--<li><a href="{#$site_root#}?mod=weblink">链接交换</a></li><li class="navline"></li>-->
+                <!--<li><a href="{#$site_root#}?mod=category">分类浏览</a></li><li class="navline"></li>-->
                 <li><a href="{#$site_root#}?mod=update">最新收录</a></li><li class="navline"></li>
-                <li><a href="{#$site_root#}?mod=archives">数据归档</a></li><li class="navline"></li>
+                <!--<li><a href="{#$site_root#}?mod=archives">数据归档</a></li><li class="navline"></li>-->
                 <li><a href="{#$site_root#}?mod=top">TOP排行榜</a></li><li class="navline"></li>
                 <li><a href="{#$site_root#}?mod=feedback">意见反馈</a></li><li class="navline"></li>
+      <li class="focus"><a href="{#$site_root#}member/?mod=website&act=add">网站提交</a></li>
         	</ul>
         </div>
     </div>
