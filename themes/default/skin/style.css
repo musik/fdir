@@ -8,7 +8,7 @@ a {color: #666; text-decoration: none;}
 a:hover {color: #f30; text-decoration: none;}
 .blank10 {display: block; height: 10px; width: 100%;}
 /* layout */
-#topbg {height: 32px; line-height: 32px;}
+#topbg {height: 32px; line-height: 32px;border-bottom: 1px solid #eee;background: #f8f8f8;}
 #topbar {margin: 0 auto; width: 950px;}
 #topbar-left {float: left;}
 #topbar-right {color: #ccc; float: right;}
