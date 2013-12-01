@@ -3,6 +3,7 @@
 function get_sitemeta($url) {
 	$url = format_url($url);
 	$data = get_url_content($url);
+  echo $data;
 		
 	$meta = array();
 	if (!empty($data)) {
@@ -11,7 +12,7 @@ function get_sitemeta($url) {
 		if (!empty($matches[1])) {
 			$meta['title'] = $matches[1];
 		}
-    if(preg_match_all('/<meta\s*(.+?)=[\'"](.+?)[\'"]\s*(.+?)=[\'"](.+?)[\'"]\s?\/?>/',$data,$ms,PREG_SET_ORDER)){
+    if(preg_match_all('/<meta\s*(.+?)=[\'"](.+?)[\'"]\s*(.+?)=[\'"](.+?)[\'"]/',$data,$ms,PREG_SET_ORDER)){
       $needs = array("keywords","description");
       foreach($ms as $m){
         $newarr = array(
