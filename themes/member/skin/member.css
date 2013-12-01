@@ -120,3 +120,5 @@ a:hover {color: #f30; text-decoration: underline;}
 .step dd {padding: 10px;}
 /* footer */
 #footer {background: url(fbg.gif) no-repeat; color: #555; height: 80px; padding: 10px; text-align: center;}
+span.help{color: #999}
+span.help tt{color: #080}

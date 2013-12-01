@@ -163,6 +163,14 @@ if (!$smarty->isCached($tplfile)) {
 				'web_utime' => $web_time,
 			);
 			$DB->insert($DB->table('webdata'), $stat_data);
+			//发送邮件
+			if (!empty($options['smtp_host']) && !empty($options['smtp_port']) && !empty($options['smtp_auth']) && !empty($options['smtp_user'])  && !empty($options['smtp_pass'])) {
+				require(APP_PATH.'include/sendmail.php');
+				if (!sendmail($options['smtp_user'], $options['site_name'].':新网站待审:'.$web_url, $options['site_url']."system/website.php?status=2")) {
+					msgbox('邮件发送失败！请检查邮件发送功能设置是否正确或邮件地址错误！');	
+				}
+			}
+
 		
 			msgbox('网站提交成功！', $pageurl);	
 		} elseif ($_POST['do'] == 'saveedit') {

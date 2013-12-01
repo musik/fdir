@@ -29,7 +29,7 @@ if (in_array($module, $modarr)) {
 		$auth_cookie = $_COOKIE['auth_cookie'];
 		$myself = check_user_login($auth_cookie);
 		if (empty($myself)) {
-			msgbox('您还未登录或无权限！', '?mod=login');
+			msgbox('您还未登录或无权限！', '?mod=register');
 		}
 		
 		$smarty->assign('myself', $myself);
