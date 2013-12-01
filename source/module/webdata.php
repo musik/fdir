@@ -3,7 +3,6 @@
 function get_sitemeta($url) {
 	$url = format_url($url);
 	$data = get_url_content($url);
-  echo $data;
 		
 	$meta = array();
 	if (!empty($data)) {
