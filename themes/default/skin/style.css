@@ -19,10 +19,10 @@ a:hover {color: #f30; text-decoration: none;}
 #wrapper {margin: 0 auto; width: 950px;}
 /* header */
 #header {}
-#topbox {height: 100px;}
+#topbox {padding: 10px 0;}
 .logo {background: url(logo.png) 0 50% no-repeat; display: block; float: left; height: 75px; width: 308px;margin-top: 5px}
 /* sobox */
-#sobox {float: right; padding-top: 20px;}
+#sobox {float: right; padding-top: 10px;}
 .sofrm {display: block; margin: 0px auto; padding-top: 14px; position: relative; width: 500px;}
 .sipt {background: url(ipt.png) no-repeat top left; border: solid 1px #dadada; display: block; font: normal 13px/30px normal; float: left; height: 30px; padding: 0 5px 0 90px; width: 300px;}
 .sbtn {background: #65bc0b; border: 0; color: #fff; cursor: pointer; font-size: 14px; height: 32px; width: 70px;}

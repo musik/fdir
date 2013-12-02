@@ -19,6 +19,38 @@
 				<span class="tips">格式 http://www.jxjw.net/</span></td>
 			</tr>
 			<tr>
+		<script src="../../public/editor/kindeditor-min.js"></script>
+    <link rel="stylesheet" href="../../public/editor/themes/default/default.css" />
+
+		<script>
+			KindEditor.ready(function(K) {
+				var uploadbutton = K.uploadbutton({
+					button : K('#uploadButton')[0],
+					fieldName : 'imgFile',
+					url : 'upload.php?act=upload&context=static',
+					afterUpload : function(data) {
+						if (data.error === 0) {
+							var url = K.formatUrl(data.url, 'absolute');
+							K('#site_logo').val(url);
+						} else {
+							alert(data.message);
+						}
+					},
+					afterError : function(str) {
+						alert('自定义错误信息: ' + str);
+					}
+				});
+				uploadbutton.fileBox.change(function(e) {
+					uploadbutton.submit();
+				});
+			});
+		</script>
+			<tr>
+				<th>网站LOGO：</th>
+				<td><input name="cfg[site_logo]" type="text" class="ipt" id="site_logo" size="30" maxlength="255" value="{#$cfg.site_logo#}" readonly="readonly" /> <input type="button" id="uploadButton" value="Upload" />
+		</div>
+			</tr>
+			<tr>
 				<th>安装目录：</th>
 				<td><input name="cfg[site_root]" type="text" class="ipt" id="site_root" size="50" maxlength="255" value="{#$cfg.site_root#}" readonly /><span class="tips">系统自动获得正确的路径，仅需手工保存。</span></td>
 			</tr>
