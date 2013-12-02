@@ -221,6 +221,7 @@ INSERT INTO `dir_options` (`option_name`, `option_value`) VALUES
 ('site_title', '网址大全_网址目录_上网导航_网站提交/登录入口'),
 ('site_url', 'http://www.35dir.com/'),
 ('site_root', '/'),
+('site_logo', '/theme/default/skin/logo.png'),
 ('admin_email', 'hanfox@qq.com'),
 ('site_keywords', '分类目录,网站收录,网站提交,网站目录,网站推广,网站登录'),
 ('site_description', '全人工编辑的开放式网站分类目录，收录国内外、各行业优秀网站，旨在为用户提供网站分类目录检索、优秀网站参考、网站推广服务。'),

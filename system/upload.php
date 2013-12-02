@@ -5,7 +5,8 @@ require(APP_PATH.'include/upload.php');
 require(APP_PATH.'include/json.php');
 
 if ($_GET['act'] == 'upload') {
-	$savepath = '../'.$options['upload_dir'].'/article/';
+  $dir = $_GET['context'] ? $_GET['context'] : "article";
+	$savepath = '../'.$options['upload_dir']."/$dir/";
 	
 	$upload = new upload_file();
 	$upload->make_dir($savepath);
