@@ -3,123 +3,118 @@ define("FILE_PUT_CONTENTS_ATOMIC_TEMP", dirname(__FILE__)."/cache");
 define("FILE_PUT_CONTENTS_ATOMIC_MODE", 0777); 
 
 function file_put_contents_atomic($filename, $content) { 
-     
-      $temp = tempnam(FILE_PUT_CONTENTS_ATOMIC_TEMP, 'temp'); 
-          if (!($f = @fopen($temp, 'wb'))) { 
-                    $temp = FILE_PUT_CONTENTS_ATOMIC_TEMP . DIRECTORY_SEPARATOR . uniqid('temp'); 
-                            if (!($f = @fopen($temp, 'wb'))) { 
-                                          trigger_error("file_put_contents_atomic() : error writing temporary file '$temp'", E_USER_WARNING); 
-                                                      return false; 
-                                                  } 
-                        } 
-         
-          fwrite($f, $content); 
-          fclose($f); 
-             
-              if (!@rename($temp, $filename)) { 
-                        @unlink($filename); 
-                                @rename($temp, $filename); 
-                            } 
-             
-              @chmod($filename, FILE_PUT_CONTENTS_ATOMIC_MODE); 
-             
-              return true; 
-                 
+
+  $temp = tempnam(FILE_PUT_CONTENTS_ATOMIC_TEMP, 'temp'); 
+  if (!($f = @fopen($temp, 'wb'))) { 
+    $temp = FILE_PUT_CONTENTS_ATOMIC_TEMP . DIRECTORY_SEPARATOR . uniqid('temp'); 
+    if (!($f = @fopen($temp, 'wb'))) { 
+      trigger_error("file_put_contents_atomic() : error writing temporary file '$temp'", E_USER_WARNING); 
+      return false; 
+    } 
+  } 
+
+  fwrite($f, $content); 
+  fclose($f); 
+
+  if (!@rename($temp, $filename)) { 
+    @unlink($filename); 
+    @copy($temp, $filename); 
+  } 
+
+  @chmod($filename, FILE_PUT_CONTENTS_ATOMIC_MODE); 
+
+  return true; 
+
 } 
 //修改配置文件函数 
 function set_config($array, $config_file = './../config.php') {
-	if (empty($array) || !is_array($array)) {
-		return false;
-	}
-	
-	$config = file_get_contents($config_file); //读取配置
-	foreach ($array as $name => $value) {
-		$name = str_replace(array("'", '"', '['), array("\\'", '\"', '\['), $name); //转义特殊字符，再传给正则替换
-		if (is_string($value) && !in_array($value, array('true', 'false', '3306'))) {
-			$value = "'".$value."'"; //如果是字符串，加上单引号
-		}
-		$config = preg_replace("/define\(\'".$name."\'\,\s+\'(.*?)\'\);/i", "define('".$name."', {$value});", $config); //查找替换
-	 }
-	 
-	//写入配置
-	if (file_put_contents_atomic($config_file, $config)) {
-		return true;
-	} else { 
-		return false;
-	}
+  if (empty($array) || !is_array($array)) {
+    return false;
+  }
+ $config = file_get_contents($config_file); //读取配置
+  foreach ($array as $name => $value) {
+    $name = str_replace(array("'", '"', '['), array("\\'", '\"', '\['), $name); //转义特殊字符，再传给正则替换
+    if (is_string($value) && !in_array($value, array('true', 'false', '3306'))) {
+      $value = "'".$value."'"; //如果是字符串，加上单引号
+    }
+    $config = preg_replace("/define\(\'".$name."\'\,\s+\'(.*?)\'\);/i", "define('".$name."', {$value});", $config); //查找替换
+  }
+
+  //写入配置
+  return file_put_contents_atomic($config_file, $config);
 }
 
 //替换MYSQL表前缀
 function replace_sql($sql_path, $old_prefix = '', $new_prefix = '') {
-	$delimiter = '(;\n)|((;\r\n))|(;\r)';
-	$commenter = array('#', '--');
-	
-	//判断文件是否存在
-	if (!file_exists($sql_path)) {
-		return false;
-	}
-        
-	$content = file_get_contents($sql_path); //读取sql文件
-    $content = str_replace($old_prefix, $new_prefix, $content); //替换前缀
-		
-    //通过sql语法的语句分割符进行分割
-    $segment = explode(";\n", trim($content)); 
+  $delimiter = '(;\n)|((;\r\n))|(;\r)';
+  $commenter = array('#', '--');
 
-    //去掉注释和多余的空行
-	$data = array();
-    foreach ($segment as $statement){
-    	$sentence = explode("\n", $statement);         
-    	$newStatement = array();
-    	foreach ($sentence as $subSentence) {
-    		if (trim($subSentence) != '') {
-    			//判断是会否是注释
-    			$isComment = false;
-    			foreach ($commenter as $comer) {
-    				if (preg_match("/^(".$comer.")/is", trim($subSentence))) {
-    					$isComment = true;
-    					break;
-    				}
-    			}
-    			//如果不是注释，则认为是sql语句
-    			if (!$isComment) {
-    				$newStatement[] = $subSentence;
-    			}
-            }
-        }           
-     	$data[] = $newStatement;		 	
-	}
+  //判断文件是否存在
+  if (!file_exists($sql_path)) {
+    return false;
+  }
 
-	//组合sql语句
-    foreach ($data as $statement) {
-    	$newStmt = '';
-        foreach ($statement as $sentence) {
-        	$newStmt = $newStmt.trim($sentence)."\n";
-        }    
-		if (!empty($newStmt)) { 
-			$result[] = $newStmt;
-		}
-	}	
-	return $result;
+  $content = file_get_contents($sql_path); //读取sql文件
+  $content = str_replace($old_prefix, $new_prefix, $content); //替换前缀
+
+  //通过sql语法的语句分割符进行分割
+  $segment = explode(";\n", trim($content)); 
+
+  //去掉注释和多余的空行
+  $data = array();
+  foreach ($segment as $statement){
+    $sentence = explode("\n", $statement);         
+    $newStatement = array();
+    foreach ($sentence as $subSentence) {
+      if (trim($subSentence) != '') {
+        //判断是会否是注释
+        $isComment = false;
+        foreach ($commenter as $comer) {
+          if (preg_match("/^(".$comer.")/is", trim($subSentence))) {
+            $isComment = true;
+            break;
+          }
+        }
+        //如果不是注释，则认为是sql语句
+        if (!$isComment) {
+          $newStatement[] = $subSentence;
+        }
+      }
+    }           
+    $data[] = $newStatement;		 	
+  }
+
+  //组合sql语句
+  foreach ($data as $statement) {
+    $newStmt = '';
+    foreach ($statement as $sentence) {
+      $newStmt = $newStmt.trim($sentence)."\n";
+    }    
+    if (!empty($newStmt)) { 
+      $result[] = $newStmt;
+    }
+  }	
+  return $result;
 }
 
 //邮箱验证
 function is_valid_email($email) {
-	if (preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $email)) {
-		return true;
-	} else {
-		return false;
-	}
+  if (preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/', $email)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 //跳转
 function redirect($url) {
-    header('location:'.$url, false, 301);
-	exit;
+  header('location:'.$url, false, 301);
+  exit;
 }
 
 //成功信息
 function success($msg = '') {
-	$str = <<<EOT
+  $str = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -136,12 +131,12 @@ body {background: #f3f3f3;}
 </body>
 </html>
 EOT;
-	exit($str);
+  exit($str);
 }
 
 //失败信息
 function failure($msg = '', $url = 'javascript:history.back();') {
-	$str = <<<EOT
+  $str = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -158,6 +153,6 @@ body {background: #f3f3f3;}
 </body>
 </html>
 EOT;
-	exit($str);
+  exit($str);
 }
 ?>

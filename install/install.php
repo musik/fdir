@@ -84,7 +84,6 @@ $config_file = ROOT_PATH.'config.php';
 if (!set_config($config, $config_file)) {
 	failure('配置文件写入失败！');
 }
-
 //安装成功，创建锁定文件
 $data_dir = ROOT_PATH.'data/';
 if (!is_dir($data_dir)) @mkdir($data_dir);

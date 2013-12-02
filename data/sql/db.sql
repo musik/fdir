@@ -212,6 +212,10 @@ CREATE TABLE IF NOT EXISTS `dir_websites` (
 
 
 
+delete  from `dir_options`;
+
+
+
 INSERT INTO `dir_options` (`option_name`, `option_value`) VALUES
 ('site_name', '35分类目录'),
 ('site_title', '网址大全_网址目录_上网导航_网站提交/登录入口'),
