@@ -449,4 +449,9 @@ function save_to_local($weburl, $savepath = '') {
     return $succeed;
   }
 }
+/* Truncate */
+function truncate($str,$len,$omission='..'){
+  $strlen = mb_strlen($str); 
+  return $strlen <= $len ? $str : mb_substr($str,0,$len - 1) . $omission;
+}
 ?>

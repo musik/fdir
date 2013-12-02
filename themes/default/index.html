@@ -1,101 +1,110 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<title>{#$site_title#}</title>
-<meta charset="utf-8">
-<meta name="Keywords" content="{#$site_keywords#}" />
-<meta name="Description" content="{#$site_description#}" />
-<meta name="Copyright" content="Powered By jxjw.net" />
-<link href="{#$site_root#}themes/default/skin/nav.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">var sitepath = '{#$site_root#}'; var rewrite = '{#$cfg.link_struct#}';</script>
-<script type="text/javascript" src="{#$site_root#}public/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="{#$site_root#}public/scripts/common.js"></script>
-</head>
+  <head>
+    <title>{#$site_title#}</title>
+    <meta charset="utf-8">
+    <meta name="Keywords" content="{#$site_keywords#}" />
+    <meta name="Description" content="{#$site_description#}" />
+    <meta name="Copyright" content="Powered By jxjw.net" />
+    <link href="{#$site_root#}themes/default/skin/nav.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">var sitepath = '{#$site_root#}'; var rewrite = '{#$cfg.link_struct#}';</script>
+    <script type="text/javascript" src="{#$site_root#}public/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="{#$site_root#}public/scripts/common.js"></script>
+  </head>
 
-<body>
-{#include file="topbar.html"#}
-<div id="wrapper">
-	{#include file="header.html"#}
-    <div class="blank10"></div>
-    <div id="quickbox"><strong>快速审核：</strong>{#foreach from=get_websites(0, 12, true) item=quick#}<a href="{#$quick.web_link#}" title="{#$quick.web_name#}">{#$quick.web_name#}</a>{#/foreach#}</div>
-    <div class="blank10"></div>
-	<div id="homebox">
-		<div id="homebox-left">
-			<div id="newbox">
-            	<h3>最新收录</h3>
-                <ul class="newlist">
-                	{#foreach from=get_websites(0, 14) item=new#}
-					<li><span>{#$new.web_ctime#}</span><a href="{#$new.web_link#}" title="{#$new.web_name#}">{#$new.web_name#}</a></li>
-                   	{#/foreach#}
-                </ul>
+  <body>
+    {#include file="topbar.html"#}
+    <div id="wrapper">
+      {#include file="header.html"#}
+      <div class="blank10"></div>
+      <div id="quickbox"><strong>快速审核：</strong>{#foreach from=get_websites(0, 12, true) item=quick#}<a href="{#$quick.web_link#}" title="{#$quick.web_name#}">{#$quick.web_name#}</a>{#/foreach#}</div>
+      <div class="blank10"></div>
+      <div id="homebox">
+        <div id="homebox-left">
+          <div class="widget">
+            <h3>入站排行榜 TOP10</h3>
+            <ul class="toplist">
+              {#foreach from=get_websites(0, 10, false, false, 'instat') item=instat name=instat_website#}
+              <li><span>{#$smarty.foreach.instat_website.iteration#}.</span><a href="{#$instat.web_link#}" title="{#$instat.web_name#}">{#truncate($instat.web_name,12)#}</a> - <em><a href="http://{#$instat.web_url#}" target="_blank" onClick="clickout({#$instat.web_id#})">{#$instat.web_url#}</a></em></li>
+              {#/foreach#}
+            </ul>
+          </div>
+          <div class="blank10"></div>
+          <div id="newbox">
+            <h3>最新收录</h3>
+            <ul class="newlist">
+              {#foreach from=get_websites(0, 10) item=new#}
+              <li><span>{#$new.web_ctime#}</span><a href="{#$new.web_link#}" title="{#$new.web_name#}">{#$new.web_name#}</a></li>
+              {#/foreach#}
+            </ul>
+          </div>
+        </div>
+        <div id="homebox-right">
+          <div id="bestbox">
+            <h3><span>站长推荐</span></h3>
+            <ul class="clearfix bestlist">
+              {#foreach from=get_websites(0, 35, false, true) item=best#}
+              <li><a href="{#$best.web_link#}" title="{#$best.web_name#}">{#$best.web_name#}</a></li>
+              {#/foreach#}
+            </ul>
+          </div>
+          <div class="blank10"></div>
+          <div id="coolbox" class="clearfix">
+            <h3>酷站导航</h3>
+            <ul class="csitelist">
+              {#foreach from=get_best_categories() item=cate name=csite#}
+              <li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>{#foreach from=get_websites($cate.cate_id, 5,false,false,'views') item=cool#}<span><a href="{#$cool.web_link#}" title="{#$cool.web_name#}">{#$cool.web_name#}</a></span>{#/foreach#}</li>
+              {#if $smarty.foreach.csite.iteration % 5 == 0 && $smarty.foreach.csite.iteration != 20#}
+              <li class="sline"></li>
+              {#/if#}
+              {#/foreach#}
+            </ul>
+          </div>
+          <div class="blank10"></div>
+          {#if 1==2#}
+          <div id="rowbox" class="clearfix">
+            <div id="newsbox">
+              <h3>站点资讯</h3>
+              <ul class="newslist">
+                {#foreach from=get_articles(0, 8, false) item=art#}
+                <li><span>{#$art.art_ctime#}</span><a href="{#$art.art_link#}">{#$art.art_title#}</a></li>
+                {#/foreach#}
+              </ul>
             </div>
-    	</div>
-    	<div id="homebox-right">
-    		<div id="bestbox">
-        		<h3><span>站长推荐</span></h3>
-            	<ul class="clearfix bestlist">
-            		{#foreach from=get_websites(0, 35, false, true) item=best#}
-                	<li><a href="{#$best.web_link#}" title="{#$best.web_name#}">{#$best.web_name#}</a></li>
-                	{#/foreach#}
-            	</ul>
-        	</div>
-        	<div class="blank10"></div>
-        	<div id="coolbox" class="clearfix">
-        		<h3>酷站导航</h3>
-            	<ul class="csitelist">
-            		{#foreach from=get_best_categories() item=cate name=csite#}
-                	<li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>{#foreach from=get_websites($cate.cate_id, 5,false,false,'views') item=cool#}<span><a href="{#$cool.web_link#}" title="{#$cool.web_name#}">{#$cool.web_name#}</a></span>{#/foreach#}</li>
-                    {#if $smarty.foreach.csite.iteration % 5 == 0 && $smarty.foreach.csite.iteration != 20#}
-                    <li class="sline"></li>
-                    {#/if#}
-                	{#/foreach#}
-            	</ul>
-        	</div>
-            <div class="blank10"></div>
-            {#if 1==2#}
-            <div id="rowbox" class="clearfix">
-    			<div id="newsbox">
-        			<h3>站点资讯</h3>
-                	<ul class="newslist">
-                		{#foreach from=get_articles(0, 8, false) item=art#}
-                		<li><span>{#$art.art_ctime#}</span><a href="{#$art.art_link#}">{#$art.art_title#}</a></li>
-                    	{#/foreach#}
-                	</ul>
-        		</div>
-                <div class="line"></div>
-				<div id="exlink">
-            		<h3>链接交换</h3>
-                	<ul class="exlist">
-                		{#foreach from=get_weblinks(0, 8) item=link#}
-						<li><a href="{#$link.web_link#}">{#$link.link_name#} - PR{#$link.web_grank#}，百度权重{#$link.web_brank#}，{#$link.deal_type#}友情链接</a></li>
-                   		{#/foreach#}
-                	</ul>
-                </div>
+            <div class="line"></div>
+            <div id="exlink">
+              <h3>链接交换</h3>
+              <ul class="exlist">
+                {#foreach from=get_weblinks(0, 8) item=link#}
+                <li><a href="{#$link.web_link#}">{#$link.link_name#} - PR{#$link.web_grank#}，百度权重{#$link.web_brank#}，{#$link.deal_type#}友情链接</a></li>
+                {#/foreach#}
+              </ul>
             </div>
-             {#/if#}
-    	</div>
-	</div>
-    <div class="blank10"></div>
-	<div id="inbox" class="clearfix">
-      	<h3>最新点入</h3>
+          </div>
+          {#/if#}
+        </div>
+      </div>
+      <div class="blank10"></div>
+      <div id="inbox" class="clearfix">
+        <h3>最新点入</h3>
         <ul class="inlist">
-          	{#nocache#}
-          	{#foreach from=get_websites(0, 30, false, false, 'instat') item=instat#}
-			<li><a href="{#$instat.web_link#}" title="{#$instat.web_name#}">{#$instat.web_name#}</a></li>
-            {#/foreach#}
-            {#/nocache#}
+          {#nocache#}
+          {#foreach from=get_websites(0, 30, false, false, 'instat') item=instat#}
+          <li><a href="{#$instat.web_link#}" title="{#$instat.web_name#}">{#$instat.web_name#}</a></li>
+          {#/foreach#}
+          {#/nocache#}
         </ul>
-	</div>
-	<div class="blank10"></div>
-    <div id="linkbox" class="clearfix">
+      </div>
+      <div class="blank10"></div>
+      <div id="linkbox" class="clearfix">
         <h3>友情链接</h3>
         <ul class="linklist">
-        	{#foreach from=get_links() item=link#}
-			<li><a href="{#$link.link_url#}" target="_blank">{#$link.link_name#}</a></li>
-            {#/foreach#}
-    	</ul>
+          {#foreach from=get_links() item=link#}
+          <li><a href="{#$link.link_url#}" target="_blank">{#$link.link_name#}</a></li>
+          {#/foreach#}
+        </ul>
+      </div>
+      {#include file="footer.html"#}
     </div>
-	{#include file="footer.html"#}
-</div>
-</body>
+  </body>
 </html>
