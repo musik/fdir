@@ -7,5 +7,5 @@ httpd.parse.errors
 /data/dbbak/*
 /data/static/*
 README
-/config/deploy.php
+/config/deploy.rb
 
