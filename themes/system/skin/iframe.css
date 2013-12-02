@@ -5,7 +5,7 @@ body {background: #be0a0a; font-family: 微软雅黑;}
 /* header */
 #header {height: 70px;}
 #logo {background: url(logo.png) no-repeat; float: left; height: 70px; width: 200px;}
-#link {color: #fff; margin-left: 200px; padding: 25px 20px 0px 0px; text-align: right;}
+#link {color: #fff; margin-left: 200px; padding: 25px 20px 0px 0px; text-align: left;}
 #link a {color: #fff; text-decoration: none;}
 /* mainer */
 #mainer {padding: 0 5px;}
