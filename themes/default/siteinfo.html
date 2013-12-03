@@ -28,7 +28,7 @@
                         {#if $user.user_qq#}
                         <li><strong>联系站长：</strong><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={#$user.user_qq#}&amp;site={#$user.nick_name#}&amp;menu=yes" target="_blank"><img border="0" alt="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:{#$user.user_qq#}:41"></a></li>
                         {#/if#}
-                        <li><strong>TAG标签：</strong>{#foreach from=$web_tags item=item#}<a href="{#$item.tag_link#}">{#$item.tag_name#}</a>　{#/foreach#}</li>
+                        <li><strong>TAG标签：</strong>{#foreach from=$web_tags key=k item=item#}{#if $k<3#}<a href="{#$item.tag_link#}">{#$item.tag_name#}</a>{#else#}{#$item.tag_name#}{#/if#}　{#/foreach#}</li>
                         <li>{#get_adcode(1)#}</li>
 					</ul>
 				</div>
