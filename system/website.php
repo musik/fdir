@@ -312,7 +312,8 @@ if (in_array($action, array('saveadd', 'saveedit'))) {
 		$DB->query("UPDATE ".$DB->table('categories')." SET cate_postcount=cate_postcount+1 WHERE cate_id=$cate_id");
 		update_cache('archives');
 		
-		msgbox('网站添加成功！', $fileurl.'?act=add&cate_id='.$cate_id);	
+    //msgbox('网站添加成功！', $fileurl.'?act=add&cate_id='.$cate_id); 
+    redirect($fileurl.'?act=add&cate_id='.$cate_id);
 	} elseif ($action == 'saveedit') {
 		$web_id = intval($_POST['web_id']);
 		$where = array('web_id' => $web_id);
@@ -324,7 +325,8 @@ if (in_array($action, array('saveadd', 'saveedit'))) {
 		$DB->query("UPDATE ".$DB->table('categories')." SET cate_postcount=cate_postcount+1 WHERE cate_id=$cate_id");
 		update_cache('archives');
 		
-		msgbox('网站修改成功！', $fileurl);
+		//msgbox('网站修改成功！', $fileurl);
+    redirect($fileurl);
 	}
 }
 
