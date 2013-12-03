@@ -398,8 +398,7 @@ if ($action == 'saveattr') {
 	msgbox('网站属性设置成功！', $fileurl);
 }
 
-/** metainfo */
-if ($action == 'metainfo') {
+if(in_array($action,array('metainfo','webdata'))){
 	$url = trim($_GET['url']);
 	if (empty($url)) {
 		exit('请输入网站域名！');
@@ -412,6 +411,9 @@ if ($action == 'metainfo') {
 			exit('请输入正确的网站域名！');
 		}
 	}
+}
+/** metainfo */
+if ($action == 'metainfo') {
 	
 	$meta = get_sitemeta($url);	
 	echo '<script type="text/javascript">';
@@ -426,15 +428,6 @@ if ($action == 'metainfo') {
 
 /** webdata */
 if ($action == 'webdata') {
-	$url = trim($_GET['url']);
-	if (empty($url)) {
-		exit('请输入网站域名！');
-	} else {
-		if (!is_valid_domain($url)) {
-			exit('请输入正确的网站域名！');
-		}
-	}
-	
 	$ip = get_serverip($url);
 	$grank = get_pagerank($url);
 	$brank = get_baidurank($url);
