@@ -98,13 +98,13 @@
 				<td><select name="cate_id" id="cate_id" class="sel">{#$category_option#}</select></td>
 			</tr>
 			<tr>
-				<th>网站名称：</th>
-				<td><input name="web_name" type="text" class="ipt" id="web_name" size="50" maxlength="50" value="{#$row.web_name#}" /></td>
+				<th>网站域名：</th>
+				<td><input name="web_url" type="text" class="ipt" id="web_url" size="30" maxlength="255" value="{#$row.web_url#}" /><input type="button" class="btn" id="meta_btn" value="抓取数据" onclick="GetData();GetMeta()">
+				<span class="tips">例: www.jxjw.net</span></td>
 			</tr>
 			<tr>
-				<th>网站域名：</th>
-				<td><input name="web_url" type="text" class="ipt" id="web_url" size="50" maxlength="255" value="{#$row.web_url#}" /><input type="button" class="btn" id="meta_btn" value="抓取Meta" onclick="GetMeta()">
-				<span class="tips">例: www.jxjw.net</span></td>
+				<th>网站名称：</th>
+				<td><input name="web_name" type="text" class="ipt" id="web_name" size="50" maxlength="50" value="{#$row.web_name#}" /></td>
 			</tr>
 			<tr>
 				<th>TAG标签：</th>
