@@ -21,6 +21,7 @@ set :shared_children, [
           #"data/dbbak",
           "data/static",
           "uploads/article",
+          "uploads/static",
           "uploads/website"]
 set :group_writable,true
 set :use_sudo, false
