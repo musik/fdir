@@ -2,7 +2,7 @@
 /** rewrite output */
 function rewrite_output($content) {
 	$search = array(
-		"/href\=\"(\.*\/*)\?mod\=(index|webdir|weblink|article|category|update|archives|top|feedback|link)?\"/e",
+		"/href\=\"(\.*\/*)\?mod\=(index|webdir|weblink|article|category|update|archives|top|feedback|link|submit)?\"/e",
 		"/href\=\"(\.*\/*)\?mod\=webdir([&amp;|&]cid\=(\d+))?([&amp;|&]page\=(\d+))?\"/e",
 		"/href\=\"(\.*\/*)\?mod\=article([&amp;|&]cid\=(\d+))?([&amp;|&]page\=(\d+))?\"/e",
 		"/href\=\"(\.*\/*)\?mod\=update([&amp;|&]days\=(\d+))?([&amp;|&]page\=(\d+))?\"/e",

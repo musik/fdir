@@ -1,7 +1,7 @@
 # BEGIN
 RewriteEngine On
 # 首页、分类浏览、数据归档、最近更新、排行榜、意见反馈
-RewriteRule ^(index|webdir|weblink|article|category|update|archives|top|feedback|link|rssfeed|sitemap)(\/|.html)?$ index.php\?mod=$1
+RewriteRule ^(webdir|weblink|article|category|update|archives|top|feedback|link|rssfeed|sitemap|submit)(\/|.html)?$ index.php\?mod=$1
 # 最近更新
 RewriteRule ^update\/(\d+)$ index.php\?mod=update&days=$1
 RewriteRule ^update\/(\d+)/(\d+)$ index.php\?mod=update&days=$1&page=$2

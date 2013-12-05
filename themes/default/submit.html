@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{#$site_title#}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Keywords" content="{#$site_keywords#}" />
+    <link href="{#$site_root#}themes/default/skin/style.css" rel="stylesheet" type="text/css" />
+    {#include file="script.html"#}
+  </head>
+
+  <body>
+    {#include file="topbar.html"#}
+    <div id="wrapper">
+      {#include file="header.html"#}
+      <div id="mainbox" class="clearfix">
+        <div id="mainbox-leftx">
+          <div class="formbox">
+            <form name="myfrom" id="myfrom" method="post" action="/submit">
+              <h1>网站提交</h1>
+            		<div class="notice">此处为游客快速提交入口,提交后你将无法管理你的提交记录。如果有需要，请点击页面右上角注册/登录，然后使用<a href="/member/?mod=website&act=add">会员提交网站入口</a>。</div>
+            		<div class="notice">{#$cfg.site_notice#}</div>
+              <ul>
+                <li><label for="cate_id">选择分类：</label><select name="cate_id">{#$category_option#}</select></li>
+                <li><label for="web_url">网站域名：</label><input type="text" name="web_url" id="web_url" class="ipt" size="30" maxlength="100" value="{#$web_url#}" onblur="checkurl(this.value)" /><input type="button" class="btn" id="meta_btn" value="抓取Meta" onclick="getdata();getmeta();"></li>
+                <li><label for="web_name">网站名称：</label><input type="text" name="web_name" id="web_name" class="ipt" size="30" maxlength="50" value="{#$web.web_name#}" /></li>
+                <li><label for="web_tags">TAG标签：</label><input type="text" name="web_tags" id="web_tags" class="ipt" size="30" maxlength="50" value="{#$web.web_tags#}" onBlur="javascript:this.value=this.value.replace(/，/ig,',');" />
+                <span class="help">多个标签用英文标点<tt>,</tt>隔开，只显示前三个</span></li>
+                <li><label for="web_intro">网站简介：</label><textarea name="web_intro" id="web_intro" cols="50" rows="6" class="ipt">{#$web.web_intro#}</textarea></li>
+                <li><label for="web_ip">服务器IP：</label><input name="web_ip" type="text" class="ipt input-readonly" id="web_ip" size="30" maxlength="30" value="{#$web.web_ip#}" readonly /><input type="button" class="btn" id="data_btn" value="获取数据" onclick="getdata();"></li>
+							<li><label>PageRank：</label><input name="web_grank" type="text" class="ipt input-readonly" id="web_grank" size="10" maxlength="2" value="{#(!$web.web_grank) ? '0' : $web.web_grank#}" readonly /></li>
+                            <li><label>BaiduRank：</label><input name="web_brank" type="text" class="ipt input-readonly" id="web_brank" size="10" maxlength="2" value="{#(!$web.web_brank) ? '0' : $web.web_brank#}" readonly /></li>
+                			<li><label>SogouRank：</label><input name="web_srank" type="text" class="ipt input-readonly" id="web_srank" size="10" maxlength="2" value="{#(!$web.web_srank) ? '0' : $web.web_srank#}" readonly /></li>
+							<li><label>AlexaRank：</label><input name="web_arank" type="text" class="ipt input-readonly" id="web_arank" size="10" maxlength="10" value="{#(!$web.web_arank) ? '0' : $web.web_arank#}" readonly /></li>
+                <li><label>&nbsp;</label><input type="hidden" name="do" id="do" value="{#$do#}"><input type="submit" class="btn" value="提 交"> <input type="reset" class="btn" value="重 填"></li>
+       <!--<script type="text/javascript">checkSubmitButton();</script>-->
+              </ul>
+            </form>
+          </div>
+          </div>
+          <div id="mainbox-right">
+          </div>
+        </div>
+        {#include file="footer.html"#}
+      </div>
+    </body>
+  </html>
