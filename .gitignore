@@ -8,4 +8,5 @@ httpd.parse.errors
 /data/static/*
 README
 /config/deploy.rb
+/uploads/
 
