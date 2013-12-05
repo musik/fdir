@@ -25,7 +25,7 @@ require(APP_PATH.'module/rewrite.php');
 $module = $_GET['mod'] ? $_GET['mod'] : $_POST['mod'];
 if (!isset($module)) $module = 'index';
 
-$modarr = array('index', 'webdir', 'article', 'weblink', 'category', 'update', 'archives', 'search', 'siteinfo', 'artinfo', 'linkinfo', 'top', 'feedback', 'diypage', 'rssfeed', 'sitemap', 'ajaxget', 'getdata', 'api');
+$modarr = array('index', 'webdir', 'article', 'weblink', 'category', 'update', 'archives', 'search', 'siteinfo', 'artinfo', 'linkinfo', 'top', 'feedback', 'diypage', 'rssfeed', 'sitemap', 'ajaxget', 'getdata', 'api','submit');
 if (in_array($module, $modarr)) {
 	$modpath = MOD_PATH.$module.'.php';
 	if (is_file($modpath)) {
