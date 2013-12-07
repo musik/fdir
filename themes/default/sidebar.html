@@ -1,0 +1,35 @@
+<!--<div class="ad250x250">{#get_adcode(7)#}</div>-->
+{#if $cfg.duoshuo_id#}
+<ul class="ds-recent-comments" data-num-items="10"></ul>
+<!--多说js加载开始，一个页面只需要加载一次 -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"{#$cfg.duoshuo_id#}"};
+(function() {
+ var ds = document.createElement('script');
+ ds.type = 'text/javascript';ds.async = true;
+ ds.src = 'http://static.duoshuo.com/embed.js';
+ ds.charset = 'UTF-8';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+ })();
+</script>
+<!--多说js加载结束，一个页面只需要加载一次 -->
+<div class="blank10"></div>
+{#/if#}
+
+<!--<div id="bestart">-->
+  <!--<h3>推荐资讯</h3>-->
+  <!--<ul class="artlist_b">-->
+    <!--{#foreach from=get_articles(0, 10) item=art#}-->
+    <!--<li><a href="{#$art.art_link#}">{#$art.art_title#}</a></li>-->
+    <!--{#/foreach#}-->
+  <!--</ul>-->
+<!--</div>-->
+
+<div id="bestweb" class="mag">
+  <h3>推荐站点</h3>
+  <ul class="weblist_b">
+    {#foreach from=get_websites(0, 5, false, true) item=best#}
+    <li><a href="{#$best.web_link#}"><img src="{#$best.web_pic#}" width="100" height="80" alt="{#$best.web_name#}" /></a><strong><a href="{#$best.web_link#}" title="{#$best.web_name#}">{#$best.web_name#}</a></strong><p>{#$best.web_intro#}</p><address><a href="{#$best.web_furl#}" target="_blank" class="visit" onClick="clickout({#$best.web_id#})">{#$best.web_url#}</a></address></li>
+    {#/foreach#}
+  </ul>
+</div>
