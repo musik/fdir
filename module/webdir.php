@@ -3,6 +3,8 @@ if (!defined('IN_HANFOX')) exit('Access Denied');
 
 $pagename = '网站目录';
 $pageurl = '?mod=webdir';
+if($_GET['order'])
+  $pageurl .= "&order=".$_GET['order'];
 $tempfile = 'webdir.html';
 $table = $DB->table('websites');
 $pagesize = 10;

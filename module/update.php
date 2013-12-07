@@ -3,6 +3,9 @@ if (!defined('IN_HANFOX')) exit('Access Denied');
 
 $pagename = '最近更新';
 $pageurl = '?mod=update';
+if($_GET['order'])
+  $pageurl .= "&order=".$_GET['order'];
+
 $tempfile = 'update.html';
 $table = $DB->table('websites');
 
