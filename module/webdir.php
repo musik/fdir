@@ -51,7 +51,9 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 		$categories = get_categories();
 	}
 			
-	$websites = get_website_list($where, 'web_ctime', 'DESC', $start, $pagesize);
+  $order = $_GET["order"] ? $_GET['order'] : 'web_ctime';
+			
+	$websites = get_website_list($where, $order, 'DESC', $start, $pagesize);
 	$total = $DB->get_count($table.' w', $where);
 	$showpage = showpage($pageurl, $total, $curpage, $pagesize);
 	
