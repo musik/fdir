@@ -1,6 +1,8 @@
 <!--<div class="ad250x250">{#get_adcode(7)#}</div>-->
 {#if $cfg.duoshuo_id#}
-<ul class="ds-recent-comments" data-num-items="10"></ul>
+<div class="widget">
+<h3>最新点评</h3>
+<ul class="ds-recent-comments" data-num-items="5"></ul>
 <!--多说js加载开始，一个页面只需要加载一次 -->
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"{#$cfg.duoshuo_id#}"};
@@ -12,6 +14,7 @@
  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
  })();
 </script>
+</div>
 <!--多说js加载结束，一个页面只需要加载一次 -->
 <div class="blank10"></div>
 {#/if#}

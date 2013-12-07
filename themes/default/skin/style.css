@@ -301,3 +301,7 @@ a.timelink_bg {background: #08c; color: #fff; padding: 3px;}
 }
 .pull-right{float:right;}
 .alexa{height: 20px;margin-right: 10px;width: 96px;line-height: 20px;text-align: right;}
+
+.widget {border: solid 1px #dae7ed;}
+.widget h3 {background: #f8fdff; border-bottom: dashed 1px #dae7ed; color: #07c; font-size: 14px; padding: 6px;}
+.widget ul{margin: 10px;}
