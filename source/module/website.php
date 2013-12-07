@@ -52,24 +52,8 @@ function get_websites($cate_id = 0, $top_num = 10, $is_pay = false, $is_best = f
 function get_website_list($where = 1, $field = 'ctime', $order = 'DESC', $start = 0, $pagesize = 0) {
 	global $DB;
 	
-	if (!in_array($field, array('instat', 'outstat', 'views', 'ctime'))) $field = 'ctime';
-	switch ($field) {
-		case 'instat' :
-			$sortby = "d.web_instat";
-			break;
-		case 'outstat' :
-			$sortby = "d.web_outstat";
-			break;
-		case 'views' :
-			$sortby = "d.web_views";
-			break;
-		case 'ctime' :
-			$sortby = "w.web_ctime";
-			break;
-		default :
-			$sortby = "w.web_ctime";
-			break;
-	}
+	if (in_array($field, array('instat', 'outstat', 'views', 'ctime'))) $sortby = 'w.web_'.$field;
+	if (in_array($field, array('grank', 'brank', 'srank', 'arank'))) $sortby = 'd.web_'.$field;
 	$order = strtoupper($order);
 	$sql = "SELECT w.web_id, w.web_name, w.web_url, w.web_pic, w.web_intro, w.web_ispay, w.web_istop, w.web_isbest, w.web_status, w.web_ctime, c.cate_name, d.web_ip, d.web_grank, d.web_brank, d.web_srank, d.web_arank, d.web_instat, d.web_outstat, d.web_views, d.web_utime FROM ".$DB->table('websites')." w LEFT JOIN ".$DB->table('categories')." c ON w.cate_id=c.cate_id LEFT JOIN ".$DB->table('webdata')." d ON w.web_id=d.web_id WHERE $where ORDER BY w.web_istop DESC, $sortby $order LIMIT $start, $pagesize";
 	$query = $DB->query($sql);
