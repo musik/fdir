@@ -10,9 +10,13 @@ if (!isset($option)) $option = 'basic';
 $fileurl .= '?opt='.$option;
 
 if (in_array($option, array('basic', 'misc', 'user', 'link', 'mail'))) {
+	$configs = stripslashes_deep($options);
+	$configs['site_root'] = str_replace('\\', '/', dirname($site_root));
 	switch ($option) {
 		case 'basic' :
 			$pagetitle = '站点信息';
+      require(APP_PATH.'module/category.php');
+      $smarty->assign('category_option', get_category_option('webdir', 0,$configs["other_category_id"] , 0));
 			break;
 		case 'misc' :
 			$pagetitle = '选项设置';
@@ -31,8 +35,6 @@ if (in_array($option, array('basic', 'misc', 'user', 'link', 'mail'))) {
 			break;
 	}
 	
-	$configs = stripslashes_deep($options);
-	$configs['site_root'] = str_replace('\\', '/', dirname($site_root));
 	
 	$smarty->assign('pagetitle', $pagetitle);
 	$smarty->assign('option', $option);

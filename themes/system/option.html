@@ -78,6 +78,10 @@
 				<th valign="top">多说ID：</th>
 				<td><input type="text" name="cfg[duoshuo_id]" class="ipt" id="duoshuo_id" value="{#$cfg.duoshuo_id#}" /></td>
 			</tr>
+			<tr>
+				<th valign="top">“其它分类”ID ：</th>
+				<td><select name="cfg[other_category_id]" id="other_category_id" class="sel"><option value="0">作为顶级分类</option>{#$category_option#}</select></td>
+			</tr>
         	{#elseif $option == 'misc'#}
 			<tr>
 				<th>是否启用Gzip压缩功能：</th>
