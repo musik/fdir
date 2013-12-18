@@ -25,8 +25,8 @@ RewriteRule ^rssfeed\/(\d+)$ index.php\?mod=rssfeed&cid=$1
 # SiteMap
 RewriteRule ^sitemap\/(\d+)$ index.php\?mod=sitemap&cid=$1
 # ·ÖÀàÄ¿Â¼
-RewriteRule ^webdir\/(.+?)-(\d+)$ index.php\?mod=webdir&cid=$2 [QSA]
 RewriteRule ^webdir\/(.+?)\-(\d+)-(\d+)$ index.php\?mod=webdir&cid=$2&page=$3 [QSA]
-RewriteRule ^article\/(.+?)\-(\d+)$ index.php\?mod=article&cid=$2
+RewriteRule ^webdir\/(.+?)-(\d+)$ index.php\?mod=webdir&cid=$2 [QSA]
 RewriteRule ^article\/(.+?)\-(\d+)-(\d+)$ index.php\?mod=article&cid=$2&page=$3
+RewriteRule ^article\/(.+?)\-(\d+)$ index.php\?mod=article&cid=$2
 # END
