@@ -187,7 +187,7 @@ class MySQL {
 	function implode_field_value($array, $glue = ',') {
 		$sql = $comma = '';
 		foreach ($array as $key => $val) {
-			$sql .= $comma."`$key`='$val'";
+			$sql .= $comma."`$key`='".addslashes($val)."'";
 			$comma = $glue;
 		}
 		return $sql;
