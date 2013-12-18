@@ -44,7 +44,8 @@ function get_serverip($url) {
 
 /** Google Pagerank */
 function get_pagerank($url) {
-	require(APP_PATH.'include/pagerank.php');
+  if(!class_exists('PageRank'))
+    require(APP_PATH.'include/pagerank.php');
 	
 	$pr = new PageRank();
 	$rank = $pr->getAPR($url);

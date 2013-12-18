@@ -24,7 +24,7 @@ function is_valid_email($email) {
 }
 
 function is_valid_domain($domain) {
-	if (preg_match("/^([0-9a-z-]{1,}.)?[0-9a-z-]{2,}.([0-9a-z-]{2,}.)?[a-z]{2,}$/i", $domain)) {
+	if (preg_match("/^([0-9a-z-]{1,}\.)?[0-9a-z-]{2,}\.([0-9a-z-]{2,}\.)?[a-z]{2,}$/i", $domain)) {
 		return true;
 	} else {
 		return false;

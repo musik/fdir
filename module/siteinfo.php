@@ -22,8 +22,13 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	
 	$cate = get_one_category($web['cate_id']);
 	$user = get_one_user($web['user_id']);
-	
-	$smarty->assign('site_title', $web['web_url'] .'/' . $web['web_name'].'&laquo;'.implode(',',array_slice(split(',',$web['web_tags']),0,3)).'&laquo;'.$options['site_name']);
+
+  $site_title = preg_replace("/^www./",'',$web['web_url']) ;
+  if($web['web_url'] != $web['web_name'])
+    $site_title .= ':'.$web['web_name'];
+  if($web['web_tags'])
+    $site_title .= implode(',',array_slice(split(',',$web['web_tags']),0,3));
+	$smarty->assign('site_title', $site_title);
 	$smarty->assign('site_keywords', !empty($web['web_tags']) ? $web['web_tags'] : $options['site_keywords']);
 	$smarty->assign('site_description', !empty($web['web_intro']) ? $web['web_intro'] : $options['site_description']);
 	$smarty->assign('site_path', get_sitepath($cate['cate_mod'], $web['cate_id']).' &raquo; '.$pagename);

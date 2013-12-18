@@ -164,7 +164,8 @@ a.timelink_bg {background: #08c; color: #fff; padding: 3px;}
 .sitelist li {border-bottom: dashed 1px #e8e8e8; display: block; height: 85px; padding: 15px 5px; position: relative;}
 .sitelist li .thumb {background: #fff; border: solid 1px #d7dde3; float: left; padding: 3px; position: absolute;}
 .sitelist li .info {margin-left: 115px; position: absolute; width: 540px;}
-.sitelist li .info h3 {display: block; font-weight: normal; font-size: 14px; height: 15px; line-height: 13px; position: absolute; top: 0;}
+.sitelist li .info h3 {display: block; font-weight: normal; font-size: 14px; height: 15px; line-height: 15px; position: absolute; top: 0;
+width:350px;overflow: hidden;}
 .sitelist li .info h3 a {color: #06c;}
 .sitelist li .info p {display: block; font: 12px '宋体'; height: 45px; line-height: 25px; overflow: hidden; position: absolute; top: 20px;}
 .sitelist li .info address {color: #080; font-size: 12px; padding: 0 10px 3px 0; position: absolute; top: 73px;}
@@ -192,7 +193,8 @@ a.timelink_bg {background: #08c; color: #fff; padding: 3px;}
 .current {background: #0080c6; color: #fff; display: block; float: left; margin-right: 5px; padding: 3px 6px;}
 /* siteinfo */
 #siteinfo {border: solid 1px #e8e8e8; border-top: solid 2px #08c; padding: 8px;}
-.wtitle {font: 24px "微软雅黑"; padding-bottom: 15px;}
+.wtitle {font: 24px "微软雅黑"; margin-bottom: 15px;
+  overflow: hidden; height: 28px;line-height: 28px;}
 .wtitle a {color: #f60; text-decoration: none;}
 .wtitle font {font: normal 12px normal;}
 .wdata {background: #fcfcfc; border-top: dotted 1px #dadada; border-bottom: dotted 1px #dadada; height: 40px; list-style: none; padding: 5px;}
