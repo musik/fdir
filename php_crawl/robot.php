@@ -108,7 +108,7 @@ function run_crawler($url){
   $crawler->addURLFilterRule("#\.(jpg|jpeg|gif|png)$# i");
   $crawler->enableCookieHandling(true);
   //$crawler->setTrafficLimit(1000 * 1024);
-  $crawler->setPageLimit(300);
+  //$crawler->setPageLimit(300);
   $crawler->enableAggressiveLinkSearch(false);
   $crawler->setFollowMode(0);
   $crawler->addURLFilterRule("#http:\/\/.+\/.+# i");
