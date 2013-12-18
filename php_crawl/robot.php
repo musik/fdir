@@ -42,6 +42,7 @@ function find_or_create_site_by_doc($doc){
   $web_name = trim($metas["title"]);
   if(empty($web_name)) $web_name = $doc->host;
   $web_tags = str_replace(array(' ','，'),',',trim($metas['keywords']));
+  $web_tags = str_replace(array('\'','"'),'',$web_tags);
   $web_intro = trim($metas["description"]);
   $web_time = time();
 	$web_data = array(

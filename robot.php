@@ -29,8 +29,8 @@ $configs = stripslashes_deep($options);
 $cate_id = $configs["other_category_id"];
 if(empty($cate_id))
   exit("category 未设置");
+//run_crawler('www.haiwantea.com');
 run_crawler($configs["site_url"] . 'top');
-//run_crawler('www.moc.gov.cn');
 
 //$process = new BackgroundProcess('run_crawler()');
 //$process->run();
