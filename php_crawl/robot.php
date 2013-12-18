@@ -1,9 +1,5 @@
 <?php
 //define('LOCALDEBUG',1);
-$configs = stripslashes_deep($options);
-$cate_id = $configs["other_category_id"];
-if(empty($cate_id))
-  exit("category 未设置");
 $table = $DB->table('websites');
 function mylog($str){
   if(defined('LOCALDEBUG'))
@@ -105,9 +101,9 @@ class MyCrawler extends PHPCrawler
     flush();
   } 
 }
-function run_crawler(){
+function run_crawler($url){
   $crawler = new MyCrawler();
-  $crawler->setURL("hao.jxjw.net/top");
+  $crawler->setURL($url);
   $crawler->addContentTypeReceiveRule("#text/html#");
   $crawler->addURLFilterRule("#\.(jpg|jpeg|gif|png)$# i");
   $crawler->enableCookieHandling(true);
@@ -120,7 +116,9 @@ function run_crawler(){
   $crawler->enableResumption();
   $crawler->setWorkingDirectory("/dev/shm/"); 
   $crawler->setUrlCacheType(PHPCrawlerUrlCacheTypes::URLCACHE_SQLITE);
-  $tmpfile = "/tmp/mycrawlerid_for_php.net.tmp";
+  $host = preg_replace("/[\:\/]/",'',$url);
+  $tmpfile = "/tmp/mycrawlerid_for_$host.tmp";
+  echo $tmpfile;
   if($tmpfile){
     if (!file_exists($tmpfile)){
       $crawler_ID = $crawler->getCrawlerId();

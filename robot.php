@@ -25,7 +25,11 @@ require(APP_PATH.'module/rewrite.php');
 
 require(ROOT_PATH.'php_crawl/robot.php');
 
-run_crawler();
+$configs = stripslashes_deep($options);
+$cate_id = $configs["other_category_id"];
+if(empty($cate_id))
+  exit("category 未设置");
+run_crawler($configs["site_url"] . 'top');
 
 //$process = new BackgroundProcess('run_crawler()');
 //$process->run();
