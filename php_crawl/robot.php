@@ -1,5 +1,5 @@
 <?php
-define('LOCALDEBUG',1);
+//define('LOCALDEBUG',1);
 $configs = stripslashes_deep($options);
 $cate_id = $configs["other_category_id"];
 if(empty($cate_id))
