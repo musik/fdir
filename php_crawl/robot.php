@@ -119,7 +119,6 @@ function run_crawler($url){
   $crawler->setUrlCacheType(PHPCrawlerUrlCacheTypes::URLCACHE_SQLITE);
   $host = preg_replace("/[\:\/]/",'',$url);
   $tmpfile = "/tmp/mycrawlerid_for_$host.tmp";
-  echo $tmpfile;
   if($tmpfile){
     if (!file_exists($tmpfile)){
       $crawler_ID = $crawler->getCrawlerId();
