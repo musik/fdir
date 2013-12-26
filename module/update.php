@@ -3,8 +3,6 @@ if (!defined('IN_HANFOX')) exit('Access Denied');
 
 $pagename = '最近更新';
 $pageurl = '?mod=update';
-if($_GET['order'])
-  $pageurl .= "&order=".$_GET['order'];
 
 $tempfile = 'update.html';
 $table = $DB->table('websites');
@@ -20,6 +18,11 @@ if ($curpage > 1) {
 		
 $setdays = intval($_GET['days']);
 $cache_id = $setdays.'-'.$curpage;
+$orderby = $_GET['order'];
+if($orderby){
+  $pageurl .= "&order=".$orderby;
+  $cache_id .= "-$orderby";
+}
 
 if (!$smarty->isCached($tempfile, $cache_id)) {
 	$smarty->assign('site_title', $pagename.' - '.$options['site_name']);
@@ -28,14 +31,14 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	$smarty->assign('site_path', get_sitepath().' &raquo; '.$pagename);
 	$smarty->assign('site_rss', get_rssfeed());
 	
-	$newarr = array();
-	$i = 0;
-	foreach ($timescope as $key => $val) {
-		$newarr[$i]['time_id'] = $key;
-		$newarr[$i]['time_text'] = $val;
-		$newarr[$i]['time_link'] = $pageurl.'&days='.$key;
-		$i++;
-	}
+	//$newarr = array();
+	//$i = 0;
+	//foreach ($timescope as $key => $val) {
+		//$newarr[$i]['time_id'] = $key;
+		//$newarr[$i]['time_text'] = $val;
+		//$newarr[$i]['time_link'] = $pageurl.'&days='.$key;
+		//$i++;
+	//}
 	
 	$where = "w.web_status=3";
 	if ($setdays > 0) {
@@ -66,9 +69,9 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 		}
 		$where .= " AND w.web_ctime>=$time";
 	}
-  $order = $_GET["order"] ? $_GET['order'] : 'web_ctime';
-			
-	$websites = get_website_list($where, $order, 'DESC', $start, $pagesize);
+  if(!$orderby) $orderby= "web_ctime";
+  $order = $orderby == "alexa" ? "ASC" : "DESC";
+	$websites = get_website_list($where, $orderby, $order, $start, $pagesize);
 	$total = $DB->get_count($table.' w', $where);
 	$showpage = showpage($pageurl, $total, $curpage, $pagesize);
 			
@@ -79,6 +82,9 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	$smarty->assign('total', $total);
 	$smarty->assign('websites', $websites);
 	$smarty->assign('showpage', $showpage);
+  $orderselect = array($orderby=>" selected");
+	$smarty->assign('orderselect', $orderselect);
+
 	unset($websites);
 }
 	

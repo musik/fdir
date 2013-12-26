@@ -1,5 +1,4 @@
 <?php
-//define('LOCALDEBUG',1);
 $table = $DB->table('websites');
 function mylog($str){
   if(defined('LOCALDEBUG'))
@@ -92,6 +91,17 @@ class MyCrawler extends PHPCrawler
     if (PHP_SAPI == "cli") $lb = "\n";
     else $lb = "<br />";
     echo "Page requested: ".$DocInfo->url." (".$DocInfo->http_status_code.")".$lb;
+    if (!preg_match("/^http:\/\/[a-z0-9\-\.]+\/$/i",$DocInfo->url)){
+        echo("Url invalid\n");
+        flush();
+        return;
+    }
+    if(preg_match("/http:\/\/www\..+\..+?\.([a-z]{2,3})\/$/i",$DocInfo->url)){
+        echo("found subdomain\n");
+        flush();
+        return;
+    }
+
     //echo "Referer-page: ".$DocInfo->referer_url.$lb;
     try{
       if ($DocInfo->received == true)
@@ -102,7 +112,7 @@ class MyCrawler extends PHPCrawler
     flush();
   } 
 }
-function run_crawler($url){
+function run_crawler($url,$allow_subdomain=false,$resumeable=true){
   $crawler = new MyCrawler();
   $crawler->setURL($url);
   $crawler->addContentTypeReceiveRule("#text/html#");
@@ -112,14 +122,18 @@ function run_crawler($url){
   //$crawler->setPageLimit(300);
   $crawler->enableAggressiveLinkSearch(false);
   $crawler->setFollowMode(0);
-  $crawler->addURLFilterRule("#http:\/\/.+\/.+# i");
-  $crawler->addURLFilterRule("#http:\/\/[^www].+# i");
+  $crawler->addURLFilterRule("#http:\/\/[a-z0-9-\.]+\/.+# i");
   $crawler->enableResumption();
   $crawler->setWorkingDirectory("/dev/shm/"); 
   $crawler->setUrlCacheType(PHPCrawlerUrlCacheTypes::URLCACHE_SQLITE);
+
+  if(!$allow_subdomain){
+    $crawler->addURLFilterRule("#http:\/\/(?!www).+\.([a-z]{2,3})\/$# i");
+    $crawler->addURLFilterRule("/http:\/\/www\..+\..+?\.([a-z]{2,3})\/$/i");
+  }
   $host = preg_replace("/[\:\/]/",'',$url);
   $tmpfile = "/tmp/mycrawlerid_for_$host.tmp";
-  if($tmpfile){
+  if($resumeable){
     if (!file_exists($tmpfile)){
       $crawler_ID = $crawler->getCrawlerId();
       file_put_contents($tmpfile, $crawler_ID);

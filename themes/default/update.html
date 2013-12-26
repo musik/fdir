@@ -17,7 +17,20 @@
       <div id="mainbox" class="clearfix">
         <div id="mainbox-left">
           <div id="listbox" class="clearfix">
-            <h2><span class="timelink">{#foreach from=$timescope item=item#}<a href="{#$item.time_link#}"{#if $item.time_id == $days#} class="timelink_bg"{#/if#}>{#$item.time_text#}</a>{#/foreach#}</span>最近更新</h2>
+              <!--<span class="timelink">{#foreach from=$timescope item=item#}<a href="{#$item.time_link#}"{#if $item.time_id == $days#} class="timelink_bg"{#/if#}>{#$item.time_text#}</a>{#/foreach#}</span>-->
+            <h2>最近更新</h2>
+            <!--<div class="filter">-->
+              <!--<form action="/update" method="get">-->
+                <!--<label for="order">排序</label>-->
+                <!--<select name="order" id="order">-->
+                  <!--<OPTION></option>-->
+                    <!--<option value="pr"{#$orderselect.pr#}>PR</option>-->
+                    <!--<option value="br"{#$orderselect.br#}>百度权重</option>-->
+                    <!--<option value="alexa"{#$orderselect.alexa#}>Alexa</option>-->
+                  <!--</select>-->
+                  <!--<button type="submit">筛选</button>-->
+                <!--</form>-->
+            <!--</div>-->
             <ul class="sitelist">
               {#foreach from=$websites item=w name=list#}
 

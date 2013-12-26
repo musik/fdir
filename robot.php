@@ -29,15 +29,41 @@ $configs = stripslashes_deep($options);
 $cate_id = $configs["other_category_id"];
 if(empty($cate_id))
   exit("category 未设置");
-//run_crawler('www.haiwantea.com');
-run_crawler($configs["site_url"] . 'top');
+if($_SERVER['argv'][1] == 'local'){
+  efine('LOCALDEBUG',1);
+  //test_subdomains();
+  run_crawler("http://www.ccoo.cn",true,false);
+}else{
+  run_crawler($configs["site_url"] . 'top');
+}
 
-//$process = new BackgroundProcess('run_crawler()');
-//$process->run();
-
-//echo sprintf('Crunching numbers in process %d', $process->getPid());
-//while ($process->isRunning()) {
-      //echo '.';
-          //sleep(1);
-//}
-//echo "\nDone.\n";
+function test_subdomains(){
+  $patts = array("/http:\/\/(?!www).+\.([a-z]{2,3})\/$/i",
+    "/http:\/\/www\..+\..+?\.([a-z]{2,3})\/$/i"
+  );
+  $arr_should_pass = array('wh.dadou.com','qj.58.com','www.weihai.ccoo.cn','shop1111.taobao.com','xxxx.1688.com');
+  $arr_shouldnot_pass = array('douqi.com','www.jxjw.net','www.tj.edu.cn','www.xx.com.cn');
+  echo "SHOULD PASS\n";
+  foreach($arr_should_pass as $k=>$domain){
+    foreach($patts as $patt){
+      if(preg_match($patt,"http://".$domain."/",$match)){
+        unset($arr_should_pass[$k]);
+        $match[] = $patt;
+        print_r($match);
+      }
+    }
+  }
+  print_r($arr_should_pass);
+  echo "SHOULDi NOT PASS\n";
+  foreach($arr_shouldnot_pass as $k=>$domain){
+    foreach($patts as $patt){
+      if(preg_match($patt,"http://".$domain."/",$match)){
+        unset($arr_shouldnot_pass[$k]);
+        $match[] = $patt;
+        print_r($match);
+      }
+    }
+  }
+  print_r($arr_shouldnot_pass);
+  
+}
