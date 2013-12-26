@@ -32,10 +32,10 @@ if(empty($cate_id))
 if($_SERVER['argv'][1] == 'local'){
   define('LOCALDEBUG',1);
   //test_subdomains();
-  //run_crawler("http://fdir.jxjw.net/tmp.html",true,false);
-  run_crawler($configs["site_url"] . 'top');
+  run_crawler("http://fdir.jxjw.net/tmp.html",true,false);
+  //run_crawler($configs["site_url"] . 'top');
 }else{
-  run_crawler($configs["site_url"] . 'top');
+  run_crawler($configs["site_url"] . 'update');
 }
 
 function test_subdomains(){

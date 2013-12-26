@@ -39,7 +39,13 @@ function find_or_create_site_by_doc($doc){
   //$metas = parse_sitemeta($doc->content);
   $metas = get_sitemeta($doc->host);
   $web_name = trim($metas["title"]);
-  if(empty($web_name)) $web_name = $doc->host;
+  if(empty($web_name)){
+    $web_name = $doc->host;
+  }else{
+    if(preg_match('/^[a-z0-9\-\$, ]+$/i',$web_name)){
+      return;
+    }
+  }
   $web_tags = str_replace(array(' ','，'),',',trim($metas['keywords']));
   $web_tags = str_replace(array('\'','"'),'',$web_tags);
   $web_intro = trim($metas["description"]);
