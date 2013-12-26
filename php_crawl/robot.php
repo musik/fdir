@@ -96,10 +96,12 @@ class MyCrawler extends PHPCrawler
         flush();
         return;
     }
-    if(preg_match("/http:\/\/www\..+\..+?\.([a-z]{2,3})\/$/i",$DocInfo->url)){
-        echo("found subdomain\n");
-        flush();
-        return;
+    if(preg_match("/http:\/\/www\..+\.(.{3}\.[a-z]{2,3})\/$/i",$DocInfo->url,$matches)){
+        if(!in_array($matches[1],array('com.cn','edu.cn','gov.cn'))){
+          echo("found subdomain\n");
+          flush();
+          return;
+        }
     }
 
     //echo "Referer-page: ".$DocInfo->referer_url.$lb;
@@ -129,7 +131,7 @@ function run_crawler($url,$allow_subdomain=false,$resumeable=true){
 
   if(!$allow_subdomain){
     $crawler->addURLFilterRule("#http:\/\/(?!www).+\.([a-z]{2,3})\/$# i");
-    $crawler->addURLFilterRule("/http:\/\/www\..+\..+?\.([a-z]{2,3})\/$/i");
+    $crawler->addURLFilterRule("/http:\/\/www\..+\.(.{4,})\.([a-z]{2,3})\/$/i");
   }
   $host = preg_replace("/[\:\/]/",'',$url);
   $tmpfile = "/tmp/mycrawlerid_for_$host.tmp";
