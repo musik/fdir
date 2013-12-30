@@ -1,0 +1,15 @@
+a.logolink{
+  float: left;
+}
+.sobox{
+  
+}
+#topbox{
+  height: 80px;
+}
+.widget{
+}
+#homebox-left .widget ul.toplist li{
+  width: 228px; 
+  overflow: hidden;
+}
