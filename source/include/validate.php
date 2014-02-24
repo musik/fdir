@@ -1,4 +1,11 @@
 <?php
+function is_valid_name($str){
+	if (preg_match('/[\x{4e00}-\x{9fa5}]+/u', $str,$m)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 function is_valid_dir($str) {
 	if (preg_match('/^[a-zA-Z][a-zA-Z0-9_-]*$/', $str)) {
 		return true;

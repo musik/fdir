@@ -30,6 +30,8 @@ if ($_POST['do'] == 'create') {
 
   if (empty($web_name)) {
     msgbox('请输入网站名称！');
+  } else if(!is_valid_name($web_name)){
+    msgbox('网站名称必须包含中文！');
   } else {
     if (!censor_words($options['filter_words'], $web_name)) {
       msgbox('网站名称中含有非法关键词！');	
