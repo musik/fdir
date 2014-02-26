@@ -16,6 +16,7 @@
       {#include file="header.html"#}
       <div id="mainbox" class="clearfix">
         <div id="mainbox-left">
+          {#get_adcode(2)#}
           <div id="siteinfo">
             <h1 class="wtitle"><span style="float: right;"></span><a href="{#$web.web_furl#}" target="_blank" onClick="clickout({#$web.web_id#})">{#$web.web_name#}</a></h1>
             <ul class="wdata"><li class="line"><em style="color: #f00;">{#$web.web_views#}</em>人气指数</li><li class="line"><em style="color: #083;">{#$web.web_grank#}</em>PageRank</li><li class="line"><em style="color: #083;">{#$web.web_brank#}</em>百度权重</li><li class="line"><em style="color: #083;">{#$web.web_srank#}</em>Sogou Rank</li><li class="line"><em style="color: #083;">{#$web.web_arank#}</em>AlexaRank</li><li class="line"><em>{#$web.web_instat#}</em>入站次数</li><li class="line"><em>{#$web.web_outstat#}</em>出站次数</li><li class="line"><em>{#$web.web_ctime#}</em>收录日期</li><li><em style="color: #f60;">{#$web.web_utime#}</em>更新日期</li></ul>
@@ -29,7 +30,6 @@
                 <li><strong>联系站长：</strong><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={#$user.user_qq#}&amp;site={#$user.nick_name#}&amp;menu=yes" target="_blank"><img border="0" alt="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:{#$user.user_qq#}:41"></a></li>
                 {#/if#}
                 <li><strong>TAG标签：</strong>{#foreach from=$web_tags key=k item=item#}{#if $k<3#}<a href="{#$item.tag_link#}">{#$item.tag_name#}</a>{#else#}{#$item.tag_name#}{#/if#}　{#/foreach#}</li>
-                <li>{#get_adcode(1)#}</li>
               </ul>
             </div>
           </div>
