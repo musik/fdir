@@ -84,6 +84,7 @@ if (in_array($action, array('saveadd', 'saveedit'))) {
 	$adver_name = trim($_POST['adver_name']);
 	$adver_url = trim($_POST['adver_url']);
 	$adver_code = trim($_POST['adver_code']);
+  $adver_code = stripslashes($adver_code);
 	$adver_etips = trim($_POST['adver_etips']);
 	$adver_days = intval($_POST['adver_days']);
 	$adver_date = time();
