@@ -41,7 +41,10 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
       $cate['cate_description'] = preg_replace('/seotitle:(.+)\n?/','',$cate['cate_description']);
 
     }
-    $title = $seotitle ? $seotitle : ($cate['cate_name'] . '-' . $pagename . '-' . $options['site_name']);
+    $cate_title = $cate['cate_name'] . "网站排行榜";
+    $cate_title = str_replace('网站网站','网站',$cate_title);
+    
+    $title = $seotitle ? $seotitle : $cate_title;
 		$smarty->assign('site_title', $title);
 		$smarty->assign('site_keywords', !empty($cate['cate_keywords']) ? $cate['cate_keywords'] : "$cate[cate_name],$pagename");
 		$smarty->assign('site_description', !empty($cate['cate_description']) ? $cate['cate_description'] : $title);
@@ -67,7 +70,7 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	
 	$smarty->assign('pagename', $pagename);
 	$smarty->assign('cate_id', $cate['cate_id']);
-	$smarty->assign('cate_name', isset($cate['cate_name']) ? '“'.$cate['cate_name'].'”网站目录' : $pagename);
+	$smarty->assign('cate_name', $cate_title ? $cate_title : $pagename);
 	$smarty->assign('categories', $categories);
 	$smarty->assign('total', $total);
 	$smarty->assign('websites', $websites);
