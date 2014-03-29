@@ -11,6 +11,7 @@ $fileurl .= '?opt='.$option;
 
 if (in_array($option, array('basic', 'misc', 'user', 'link', 'mail'))) {
 	$configs = stripslashes_deep($options);
+	$configs = stripslashes_deep($configs);
 	$configs['site_root'] = str_replace('\\', '/', dirname($site_root));
 	switch ($option) {
 		case 'basic' :
