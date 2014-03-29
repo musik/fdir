@@ -36,9 +36,15 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 			redirect('?mod=category');
 		}
 		
-		$smarty->assign('site_title', $cate['cate_name'].' - '.$pagename.' - '.$options['site_name']);
-		$smarty->assign('site_keywords', !empty($cate['cate_keywords']) ? $cate['cate_keywords'] : $options['site_keywords']);
-		$smarty->assign('site_description', !empty($cate['cate_description']) ? $cate['cate_description'] : $options['site_description']);
+    if(preg_match('/seotitle:(.+)/',$cate['cate_description'],$match)){
+      $seotitle = $match[1];
+      $cate['cate_description'] = preg_replace('/seotitle:(.+)\n?/','',$cate['cate_description']);
+
+    }
+    $title = $seotitle ? $seotitle : ($cate['cate_name'] . '-' . $pagename . '-' . $options['site_name']);
+		$smarty->assign('site_title', $title);
+		$smarty->assign('site_keywords', !empty($cate['cate_keywords']) ? $cate['cate_keywords'] : "$cate[cate_name],$pagename");
+		$smarty->assign('site_description', !empty($cate['cate_description']) ? $cate['cate_description'] : $title);
 		$smarty->assign('site_path', get_sitepath($cate['cate_mod'], $cate['cate_id']));
 		$smarty->assign('site_rss', get_rssfeed($cate['cate_mod'], $cate['cate_id']));
 		
