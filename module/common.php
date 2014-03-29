@@ -8,6 +8,7 @@ function smarty_output($template, $cache_id = NULL, $compile_id = NULL) {
 	
 	#common
 	$options = stripslashes_deep($options);
+	$options = stripslashes_deep($options);
 	$stats = get_stats();
 	$labels = stripslashes_deep(get_labels());
 	
