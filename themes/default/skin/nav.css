@@ -134,3 +134,5 @@ a:hover {color: #f30; text-decoration: underline;}
 .toplist li span {color: #f30; padding-right: 10px;}
 .toplist li em {font: normal 12px Arial;}
 .toplist li em a {color: #080;}
+a.red{color: #f30;}
+span.red{color: #f30;}

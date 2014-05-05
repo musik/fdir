@@ -17,7 +17,9 @@
     <div id="wrapper">
       {#include file="header.html"#}
       <div class="blank10"></div>
+      {#if 0#}
       <div id="quickbox"><strong>快速审核：</strong>{#foreach from=get_websites(0, 12, true) item=quick#}<a href="{#$quick.web_link#}" title="{#$quick.web_name#}">{#$quick.web_name#}</a>{#/foreach#}</div>
+      {#/if#}
       <div class="blank10"></div>
       <div id="homebox">
         <div id="homebox-left">
@@ -45,7 +47,7 @@
             <h3><span>站长推荐</span></h3>
             <ul class="clearfix bestlist">
               {#foreach from=get_websites(0, 35, false, true) item=best#}
-              <li><a href="{#$best.web_link#}" title="{#$best.web_name#}">{#$best.web_name#}</a></li>
+              <li><a href="http://{#$best.web_url#}" title="{#$best.web_name#}"i target="_blank">{#$best.web_name#}</a></li>
               {#/foreach#}
             </ul>
           </div>
@@ -54,7 +56,15 @@
             <h3>酷站导航</h3>
             <ul class="csitelist">
               {#foreach from=get_best_categories() item=cate name=csite#}
-              <li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>{#foreach from=get_websites($cate.cate_id, 5,false,false,'views') item=cool#}<span><a href="{#$cool.web_link#}" title="{#$cool.web_name#} - {#$cool.web_url#}">{#$cool.web_name#}</a></span>{#/foreach#}</li>
+              <li><h4><a href="{#$cate.cate_link#}">{#$cate.cate_name#}</a></h4><a href="{#$cate.cate_link#}" class="more">更多>></a>
+              {#foreach from=get_websites($cate.cate_id, 5,false,false,'views') item=cool#}
+                {#if $cool.web_ispay#}
+              <span><a href="http://{#$cool.web_url#}" title="{#$cool.web_name#}" target="_blank" class="red">{#$cool.web_name#}</a></span>
+                {#else#}
+              <span><a href="{#$cool.web_link#}" title="{#$cool.web_name#} - {#$cool.web_url#}">{#$cool.web_name#}</a></span>
+                {#/if#}
+              {#/foreach#}
+              </li>
               {#if $smarty.foreach.csite.iteration % 5 == 0 && $smarty.foreach.csite.iteration != 20#}
               <li class="sline"></li>
               {#/if#}

@@ -15,7 +15,7 @@ function get_websites($cate_id = 0, $top_num = 10, $is_pay = false, $is_best = f
 	if ($is_pay == true) $where .= " AND w.web_ispay=1";
 	if ($is_best == true) $where .= " AND w.web_isbest=1";
 	
-	$sql = "SELECT w.web_id, w.web_name, w.web_url, w.web_pic, w.web_intro, w.web_ctime, c.cate_id, c.cate_mod, c.cate_name, d.web_grank, d.web_brank, d.web_srank, d.web_arank, d.web_instat, d.web_outstat, d.web_views FROM ".$DB->table('websites')." w LEFT JOIN ".$DB->table('categories')." c ON w.cate_id=c.cate_id LEFT JOIN ".$DB->table('webdata')." d ON w.web_id=d.web_id WHERE $where ORDER BY $sortby $order LIMIT $top_num";
+	$sql = "SELECT w.web_id, w.web_name, w.web_url, w.web_pic, w.web_intro, w.web_ctime, c.cate_id, c.cate_mod, c.cate_name, d.web_grank, d.web_brank, d.web_srank, d.web_arank, d.web_instat, d.web_outstat, d.web_views,web_ispay FROM ".$DB->table('websites')." w LEFT JOIN ".$DB->table('categories')." c ON w.cate_id=c.cate_id LEFT JOIN ".$DB->table('webdata')." d ON w.web_id=d.web_id WHERE $where ORDER BY $sortby $order LIMIT $top_num";
 	$query = $DB->query($sql);
 	$results = array();
 	while ($row = $DB->fetch_array($query)) {
