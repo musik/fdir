@@ -25,7 +25,7 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 
   $site_title = preg_replace("/^www./",'',$web['web_url']) ;
   if($web['web_url'] != $web['web_name'])
-    $site_title .= '_'.$web['web_name'];
+    $site_title = $web['web_name'] .'_'.$site_title;
   //if($web['web_tags'])
     //$site_title .= implode(',',array_slice(split(',',$web['web_tags']),0,3));
 	$smarty->assign('site_title', $site_title);
