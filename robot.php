@@ -29,13 +29,16 @@ $configs = stripslashes_deep($options);
 $cate_id = $configs["other_category_id"];
 if(empty($cate_id))
   exit("category 未设置");
+define('LOGFILE',ROOT_PATH.'/php_crawl/log/crawler.log');
 if($_SERVER['argv'][1] == 'local'){
   define('LOCALDEBUG',1);
   //test_subdomains();
-  run_crawler("http://fdir.jxjw.net/tmp.html",true,false);
+  run_crawler('http://www.gov.cn',false,false);
+  //run_crawler("http://local.hongchawu.com/tmp.html",true,false);
+  //run_crawler("http://fdir.jxjw.net/tmp.html",true,false);
   //run_crawler($configs["site_url"] . 'top');
 }else{
-  run_crawler($configs["site_url"] . 'update');
+  //run_crawler('http://www.gov.cn',false,false);
 }
 
 function test_subdomains(){

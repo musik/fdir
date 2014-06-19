@@ -9,4 +9,5 @@ httpd.parse.errors
 README
 /config/deploy.rb
 /uploads/
+*.log
 
