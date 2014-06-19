@@ -51,7 +51,11 @@ if (!$smarty->isCached($tempfile, $cache_id)) {
 	
     $smarty->assign('web', $web);
 	$smarty->assign('user', $user);
-	$smarty->assign('related_website', get_websites($web['cate_id'], 10, false, false, 'ctime'));
+  $offset = $web['web_id'] - 5;
+  $smarty->assign('related_website', get_website_list(
+    "w.web_id > $offset",'id','asc',0,10
+  ));
+	//$smarty->assign('related_website', get_websites($web['cate_id'], 10, false, false, 'ctime'));
 }
 		
 smarty_output($tempfile, $cache_id);
