@@ -1,7 +1,7 @@
 <?php
 $table = $DB->table('websites');
 function xfile_put_contents($file, $string, $append = false) {
-  $mode = !$append ? 'wb' : 'ab';
+  $mode = $append ? 'ab' : 'wb';
   $fp = @fopen($file, $mode) or exit("Can not open $file");
   flock($fp, LOCK_EX);
   $stringlen = @fwrite($fp, $string);
@@ -12,9 +12,9 @@ function xfile_put_contents($file, $string, $append = false) {
 function mylog($string,$append = true){
   if(!is_string($string))
     $string = var_export($string,true);
-  xfile_put_contents(LOGFILE,$string,$append);
   if(defined('LOCALDEBUG'))
     echo $str ,"\n";
+  xfile_put_contents(LOGFILE,$string,$append);
 }
 function parse_sitemeta($data) {
 	$meta = array();
@@ -38,6 +38,10 @@ function parse_sitemeta($data) {
 	}
 	return $meta; 
 }
+function has_chinese($str){
+  return preg_match("/[\x7f-\xff]/", $str) ? true : false;
+  //return preg_match("/[\x{4e00}-\x{9fff}]/u", $str) ? true : false;
+}
 function find_or_create_site_by_doc($doc){
   global $DB,$cate_id,$table;
   if ($doc->file != '') return;
@@ -54,7 +58,8 @@ function find_or_create_site_by_doc($doc){
   if(empty($web_name)){
     $web_name = $doc->host;
   }else{
-    if(preg_match('/^[a-z0-9\-\$\,\&\| ]+$/i',$web_name)){
+    if(!has_chinese($web_name)){
+      mylog("title 不含中文");
       return;
     }
   }
@@ -116,20 +121,19 @@ class MyCrawler extends PHPCrawler
     }
     if(preg_match("/http:\/\/www\..+\.(.{3}\.[a-z]{2,3})\/$/i",$DocInfo->url,$matches)){
         if(!in_array($matches[1],array('com.cn','edu.cn','gov.cn'))){
-          echo("found subdomain\n");
-          flush();
+          mylog("found subdomain\n");
           return;
         }
     }
 
     //echo "Referer-page: ".$DocInfo->referer_url.$lb;
     try{
-      if ($DocInfo->received == true)
+      if ($DocInfo->received == true){
         find_or_create_site_by_doc($DocInfo);
+      }
     }catch (Exception $e){
-      echo 'Caught Exception:',$e->getMessage(),"\n";
+      mylog( 'Caught Exception:',$e->getMessage()."\n");
     }
-    flush();
   } 
 }
 function run_crawler($url,$allow_subdomain=false,$resumeable=true){
@@ -171,10 +175,10 @@ function run_crawler($url,$allow_subdomain=false,$resumeable=true){
   if (PHP_SAPI == "cli") $lb = "\n";
   else $lb = "<br />";
 
-  echo "Summary:".$lb;
-  echo "Links followed: ".$report->links_followed.$lb;
-  echo "Documents received: ".$report->files_received.$lb;
-  echo "Bytes received: ".$report->bytes_received." bytes".$lb;
-  echo "Process runtime: ".$report->process_runtime." sec".$lb; 
+  mylog( "Summary:".$lb);
+  mylog( "Links followed: ".$report->links_followed.$lb);
+  mylog( "Documents received: ".$report->files_received.$lb);
+  mylog( "Bytes received: ".$report->bytes_received." bytes".$lb);
+  mylog( "Process runtime: ".$report->process_runtime." sec".$lb); 
 }
 ?>

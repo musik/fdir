@@ -30,17 +30,33 @@ $cate_id = $configs["other_category_id"];
 if(empty($cate_id))
   exit("category 未设置");
 define('LOGFILE',ROOT_PATH.'/php_crawl/log/crawler.log');
-if($_SERVER['argv'][1] == 'local'){
-  define('LOCALDEBUG',1);
+if($_SERVER['argv'][1] == 'test'){
   //test_subdomains();
-  run_crawler('http://www.gov.cn',false,false);
+  echo "test:\n";
+  test_chinese_title();
+}elseif($_SERVER['argv'][1] == 'local'){
+  define('LOCALDEBUG',1);
+  run_crawler('http://www.hnzx.gov.cn',false,false);
   //run_crawler("http://local.hongchawu.com/tmp.html",true,false);
   //run_crawler("http://fdir.jxjw.net/tmp.html",true,false);
   //run_crawler($configs["site_url"] . 'top');
 }else{
+  run_crawler('http://www.gov.cn');
   //run_crawler('http://www.gov.cn',false,false);
 }
 
+function test_chinese_title(){
+  $arr = array();
+  $arr[] = "这个可以通过,ddd00";
+  $arr[] = iconv("UTF-8",'GB2312//IGNORE',"这个可以通过,ddd00");
+  $arr[] = "this should not pass";
+  foreach($arr as $str){
+    echo $str." - ";
+    var_dump( has_chinese($str));
+    echo "\n";
+  }
+
+}
 function test_subdomains(){
   $patts = array("/http:\/\/(?!www)\..+\.([a-z]{2,3})\/$/i",
     "/http:\/\/www\..+\.(.{4,})\.([a-z]{2,3})\/$/i"
