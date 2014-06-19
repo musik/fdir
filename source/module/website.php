@@ -36,7 +36,7 @@ function get_websites($cate_id = 0, $top_num = 10, $is_pay = false, $is_best = f
 /** website list */
 function get_website_list($where = 1, $field = 'ctime', $order = 'DESC', $start = 0, $pagesize = 0) {
 	global $DB;
-	if (in_array($field, array( 'ctime'))) $sortby = 'w.web_'.$field;
+	if (in_array($field, array( 'id','ctime'))) $sortby = 'w.web_'.$field;
 	if (!$sortby && in_array($field, array('instat', 'outstat', 'views','grank', 'brank', 'srank', 'arank'))) $sortby = 'd.web_'.$field;
   $tmp = array('pr'=>'grank','br'=>'brank','alexa'=>'arank');
   if(!$sortby && array_key_exists ($field,$tmp))
