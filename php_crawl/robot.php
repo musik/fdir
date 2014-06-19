@@ -1,6 +1,18 @@
 <?php
 $table = $DB->table('websites');
-function mylog($str){
+function xfile_put_contents($file, $string, $append = false) {
+  $mode = !$append ? 'wb' : 'ab';
+  $fp = @fopen($file, $mode) or exit("Can not open $file");
+  flock($fp, LOCK_EX);
+  $stringlen = @fwrite($fp, $string);
+  flock($fp, LOCK_UN);
+  @fclose($fp);
+  return $stringlen;
+}
+function mylog($string,$append = true){
+  if(!is_string($string))
+    $string = var_export($string,true);
+  xfile_put_contents(LOGFILE,$string,$append);
   if(defined('LOCALDEBUG'))
     echo $str ,"\n";
 }
@@ -121,6 +133,7 @@ class MyCrawler extends PHPCrawler
   } 
 }
 function run_crawler($url,$allow_subdomain=false,$resumeable=true){
+  mylog("URL: $url",0);
   $crawler = new MyCrawler();
   $crawler->setURL($url);
   $crawler->addContentTypeReceiveRule("#text/html#");
