@@ -42,8 +42,8 @@ if($_SERVER['argv'][1] == 'test'){
   //run_crawler($configs["site_url"] . 'top');
 }else{
   $url = $_SERVER['argv'][1];
-  if(!$url) $url = 'www.gov.cn'
-  run_crawler('http://'.$url);
+  $url = $url ? "http://".$url : $configs["site_url"]."update";
+  run_crawler($url);
   //run_crawler('http://www.gov.cn',false,false);
 }
 
