@@ -43,7 +43,8 @@ if($_SERVER['argv'][1] == 'test'){
 }else{
   $url = $_SERVER['argv'][1];
   $url = $url ? "http://".$url : $configs["site_url"]."update";
-  run_crawler($url);
+  //$url = $url ? "http://".$url : "http://seo.chinaz.com";
+  run_crawler($url,false,false);
   //run_crawler('http://www.gov.cn',false,false);
 }
 
